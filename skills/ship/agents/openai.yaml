@@ -1,0 +1,5 @@
+interface:
+  display_name: "Ship"
+  short_description: "Release main to production with a gated deploy"
+policy:
+  allow_implicit_invocation: false
