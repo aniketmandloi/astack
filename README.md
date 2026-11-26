@@ -47,6 +47,13 @@ Skills orchestrate; four agents do the work, each pinned to a model and effort
 | scout | Search, `gh` reads, docs lookups | Haiku 5.5, high | gpt-6.2-sol, high |
 | clerk | Bulk, fully specified `gh` writes | Haiku 5.5, high | gpt-6.2-sol, high |
 
+## Guard
+
+In Claude Code, a PreToolUse hook (`hooks/guard.py`) blocks destructive commands, in every
+session: force-pushes without a lease, branch deletion, `rm -rf` outside the working
+directory, GitHub deletes, and dropping database tables. Run one yourself with
+`! <command>` if you mean it. Tests: `python3 -m unittest hooks/test_guard.py`.
+
 ## Install
 
 **Claude Code**
