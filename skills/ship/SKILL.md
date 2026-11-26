@@ -10,6 +10,10 @@ disable-model-invocation: true
 Production changes only through a release (`../../docs/environments.md`). Commands:
 `../../docs/github.md`.
 
+First read `ASTACK_MANAGES` (`../../docs/footprint.md`). If it doesn't include `deploy`, stop.
+Tell the user that AStack doesn't manage delivery in this repo, so releases follow their
+existing process, and that rerunning `/astack:setup` can add `deploy` if they want it.
+
 1. **Preflight.** Send a **scout** to gather, read-only:
    - the head of `main`, and whether its `ci` run passed and its development deploy succeeded
    - the last release tag, and the PRs merged since it, with their Environments sections
