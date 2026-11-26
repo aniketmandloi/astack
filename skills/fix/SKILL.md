@@ -19,6 +19,9 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
    find the root cause and fix it there, not at the symptom. If it can't reproduce, have it
    report what it tried. Post that on the issue and ask the user for the missing detail rather
    than guessing at a fix.
+   When the bug is slowness, the reproduction is a measurement: the same operation, input, and
+   environment, run several times before the fix and after it. The PR reports both numbers and
+   what limits the result.
 5. **Verify and deslop** as in the **build** skill: the reproducing test now passes, the rest
    of the suite still passes, the diff touches only what the root cause needs, and a deslop
    pass comes back clean.
