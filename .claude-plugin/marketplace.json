@@ -1,0 +1,13 @@
+{
+  "name": "astack",
+  "owner": {
+    "name": "aniketmandloi"
+  },
+  "plugins": [
+    {
+      "name": "astack",
+      "source": "./",
+      "description": "GitHub-only workflow for building any project with coding agents."
+    }
+  ]
+}
