@@ -27,6 +27,7 @@ or paraphrase them, and name the file.
 | Launch readiness, the first customer | `../../docs/launch.md` |
 | `AGENTS.md` and `CLAUDE.md` in projects | `../../docs/agents-md.md` |
 | What astack mode decides and when it pauses | `../../docs/autonomy.md` |
+| What setup changes, keeping an existing GitHub setup, Light/Custom/Full | `../../docs/footprint.md` |
 
 If the files don't answer it, say so plainly rather than filling the gap.
 
@@ -36,6 +37,7 @@ Send a **scout** agent (`../../docs/routing.md`) for the repo's state, read-only
 - whether AStack is set up (`gh variable get ASTACK_SETUP`): `complete` means set up;
   `awaiting-merge` means the `astack-setup` PR still needs merging; unset with AStack labels
   means setup was interrupted, and rerunning `/astack:setup` resumes it
+- what AStack manages here (`gh variable get ASTACK_MANAGES`, `../../docs/footprint.md`)
 - an open `astack:run` issue, with its Waiting on you
 - open `astack:map`, `astack:spec`, `astack:slice`, `astack:bug`, and `astack:launch` issues,
   with status, tier, assignee, and open blockers
