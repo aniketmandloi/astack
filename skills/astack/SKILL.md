@@ -28,6 +28,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | New project, or an effort too big or foggy for one session | **chart** → **spec** → **slice** |
 | A feature with open decisions that fits one session | **grill** → **spec** → **slice** |
 | A clear feature, UI change, or tweak that fits one session | **build** (it files the issue first) |
+| Open issues with no `astack:` label, or customer feedback | **triage** |
 | A bug, error, or regression | **fix** |
 | A refactor or cleanup that keeps behaviour the same | **build**, in refactor mode |
 | A map with open tickets | **chart** on that map |

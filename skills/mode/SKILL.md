@@ -36,7 +36,7 @@ autonomy overrides:
    each ticket. Research tickets go to scouts in parallel.
 3. A finished map with no spec: **spec**.
 4. A spec with no slices: **slice**.
-5. Open `astack:bug` issues the run caused: **fix**.
+5. Open issues with no `astack:` label: **triage**. Then any open `astack:bug`: **fix**.
 6. Startable slices: **build** the next one, **review** it, **babysit** it to merge-ready,
    and merge it once it passes the gates in `../../docs/autonomy.md`. Then confirm its development deploy succeeded
    (`gh run list --workflow deploy.yml --branch main --limit 1`). If the deploy failed, file
