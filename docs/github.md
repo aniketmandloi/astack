@@ -144,7 +144,8 @@ blocker and no assignee, oldest first.
 - One branch per issue from the latest `main`: `<n>-<short-slug>`.
 - The PR body starts with `Closes #<n>`, then a `## Why` section stating the goal in one
   sentence (what the change gives its user), then: what changed, how each acceptance criterion
-  is met, checks run with results, environment impact, and what the user must check by hand.
+  is met, checks run with results, a Deslop section (the number of rounds, and each finding
+  by slop rule number), environment impact, and what the user must check by hand.
   Every claim is labelled measured (run and seen), inferred, or a guess.
 - When the PR opens, move the issue to `status:in-review`. Merge is squash-only and needs the
   user's go-ahead.

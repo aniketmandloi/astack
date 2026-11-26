@@ -64,6 +64,8 @@ diff cold. Give it the branch, the diff against `main`, and the full text of
 `../../docs/slop.md`. Send every finding back to the tier that wrote the code, then run the
 pass again. Repeat until a pass comes back clean; after two rounds that aren't clean, show the
 user what remains and stop. Run the CI gate's commands locally too when the repo has them.
+Record the number of rounds and each finding's slop rule for the PR's Deslop section; `retro`
+learns from it.
 
 ## 6. Open the PR
 
