@@ -30,3 +30,7 @@ SOFTWARE.
 
 Ideas (not text) were also drawn from the BMAD Method's phase separation and from gstack's
 role-based reviews and ship flow.
+
+The prose rules in `docs/slop.md` condense the `unslop` skill from
+[pstack](https://github.com/cursor/plugins/tree/main/pstack), used under the MIT License
+(Copyright (c) 2026 Lauren Tan), with the same permission notice and disclaimer as above.
