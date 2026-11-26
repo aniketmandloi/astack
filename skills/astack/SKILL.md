@@ -33,6 +33,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | A map with open tickets | **chart** on that map |
 | A spec with no slices | **slice** |
 | An open PR awaiting review, or "review this" | **review** |
+| A PR with red checks, conflicts, or unanswered comments | **babysit** |
 | "What's next?" or no request | **build** on the next startable slice; otherwise the next frontier ticket of an open map |
 | Release or deploy to production | Tell the user to run `/astack:ship` (Codex: `$ship`) |
 | A question about AStack, or "where am I?" without wanting work started | **help** |

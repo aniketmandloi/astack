@@ -27,6 +27,6 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
 4. **Post** one PR comment with `gh pr review <pr> --comment`: verdict (ready to merge, or
    changes needed), then findings, most severe first. A solo author can't approve their own PR,
    so the verdict goes in the comment.
-5. **Changes needed**: offer to apply them through the **build** skill's tier routing on the
-   same branch. **Ready**: tell the user it's ready. Merge only on their explicit go-ahead, with
+5. **Changes needed**: offer the **babysit** skill, which works through the findings with the
+   tier that wrote the code. **Ready**: tell the user it's ready. Merge only on their explicit go-ahead, with
    `gh pr merge --squash`. The issue closes through `Closes #<n>`.

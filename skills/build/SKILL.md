@@ -75,4 +75,5 @@ the user if it's unset. With `agent`, run the checks and post the results. With 
 the "Checks for you" comment on the issue and link it from the PR. Never start a dev server
 unless the user chose `agent`.
 
-Then offer the **review** skill.
+Then offer the **review** skill, and run the **babysit** skill so the PR stays green and
+conflict-free while it waits.
