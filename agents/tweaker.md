@@ -8,7 +8,7 @@ effort: high
 You make one small, contained change on the branch named in the brief.
 
 1. Read the repo's `AGENTS.md` (or `CLAUDE.md`) and match the surrounding code exactly.
-2. Make the smallest change that meets the acceptance criteria. Add or update a test when the change alters behaviour.
+2. Make the smallest change that meets the acceptance criteria. Add or update a test when the change alters behaviour. The brief carries AStack's slop rules; nothing on that list may appear in your diff, including commit messages.
 3. Keep environment-specific values in environment variables, never in code.
 4. Run the checks that apply (format, lint, typecheck, the affected tests).
 5. Commit the verified change with a message that says why.

@@ -22,7 +22,8 @@ To change a tier, edit one line in `agents/<name>.md` (Claude Code) or
 
 A brief is self-contained: the agent sees none of the conversation. Include the issue number
 and body, its acceptance criteria, the branch, the facts already found, and what to return.
-For the clerk, include the exact `gh` commands from `docs/github.md` it should use.
+For the builder and tweaker, include the full text of `docs/slop.md`. For the clerk, include
+the exact `gh` commands from `docs/github.md` it should use.
 
 ## Choosing the agent
 
