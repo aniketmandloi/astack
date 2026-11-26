@@ -150,8 +150,9 @@ blocker and no assignee, oldest first.
   is met, checks run with results, a Deslop section (the number of rounds, and each finding
   by slop rule number), environment impact, and what the user must check by hand.
   Every claim is labelled measured (run and seen), inferred, or a guess.
-- When the PR opens, move the issue to `status:in-review`. Merging is rebase-only, so every
-  commit on the branch lands on `main`, and it needs the user's go-ahead.
+- When the PR opens, move the issue to `status:in-review`. Merging needs the user's go-ahead.
+  When AStack manages `merge`, merges are rebase-only, so every commit on the branch lands on
+  `main`. When it doesn't, use the method the repo allows (`docs/footprint.md`).
 - Throwaway prototype branches are `prototype/<n>-<slug>`: pushed, linked from their ticket,
   never merged.
 
@@ -162,10 +163,14 @@ Every verdict and check belongs to one exact commit.
 - **Review**: the review comment opens with `Reviewed at <head-sha>`, from
   `gh pr view <pr> --json headRefOid --jq .headRefOid`. The verdict covers only that commit.
   Any later push needs a review of the new commits before the PR is merge-ready again.
-- **Merge**: `gh pr merge <pr> --rebase --match-head-commit <reviewed-sha>`. GitHub refuses it
-  if the head moved since the review.
+- **Merge**: `gh pr merge <pr> --rebase --match-head-commit <reviewed-sha>`. Use `--merge` or
+  `--squash` instead only when the repo doesn't allow rebase and AStack doesn't manage `merge`.
+  GitHub refuses the merge if the head moved since the review.
 - **Deploy**: after merging, take the merge commit
   (`gh pr view <pr> --json mergeCommit --jq .mergeCommit.oid`). For a rebase merge that's
   the last rebased commit, the one the push to `main` deployed. Find its own deploy run
-  (`gh run list --workflow deploy.yml --commit <merge-sha> --json databaseId,status,conclusion`)
-  and watch that run (`gh run watch <id>`). The latest run on `main` may belong to another merge.
+  (`gh run list --workflow <deploy-workflow> --commit <merge-sha> --json databaseId,status,conclusion`)
+  and watch that run (`gh run watch <id>`). The latest run on `main` may belong to another
+  merge. `<deploy-workflow>` is `deploy.yml` when AStack manages `deploy`; otherwise it's the
+  repo's own deploy workflow, if it has one. With no deploy workflow, the evidence is the
+  checks on the merge commit passing (`docs/footprint.md`).
