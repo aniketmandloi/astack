@@ -21,7 +21,10 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    use the **grill** skill on just those questions.
 3. **Labels.** Have the **clerk** create every label in `../../docs/github.md` with
    `gh label create <name> --color <hex> --description "<meaning>" --force`.
-4. **Files.** On branch `astack-setup`, brief the **builder** agent to write the files listed
+4. **Files.** A repo with no commits has no `main` for a PR to target. First push one commit
+   straight to `main` holding only the `.gitignore`; this is the only direct commit AStack
+   ever makes to `main`. Then, on branch `astack-setup`, brief the **builder** agent to write
+   the files listed
    under "Files `setup` writes", with the commands from step 2 and the slop gate from
    `../../docs/slop.md` (ask the user before adding a dev dependency the gate needs; an
    existing repo may need a first PR that clears current hits). Each workflow's third-party
