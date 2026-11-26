@@ -87,8 +87,11 @@ What "met" means depends on the entry:
 
 | Entry | Met when |
 |---|---|
-| chart, or grill then spec | every slice of the spec without `astack:release` is closed by a merged PR, and the deploy run for the last merge commit succeeded |
-| build, fix, or refactor | its PR is merged, and the deploy run for its merge commit succeeded |
+| chart, or grill then spec | every slice of the spec without `astack:release` is closed by a merged PR, and the deploy evidence for the last merge commit holds |
+| build, fix, or refactor | its PR is merged, and the deploy evidence for its merge commit holds |
+
+Deploy evidence is the deploy run for that commit succeeding. In a repo with no deploy
+workflow AStack can track, it's the checks on that commit passing (`../../docs/footprint.md`).
 | triage | every issue it was asked to sort has been classified and its changes applied, or held under Waiting on you |
 
 Release-only work (`astack:release`, such as Connect production) never holds up a development
