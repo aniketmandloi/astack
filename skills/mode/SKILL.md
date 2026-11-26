@@ -83,9 +83,23 @@ under Waiting on you, and move on to the next unit.
 
 ## 4. Stop
 
+What "met" means depends on the entry:
+
+| Entry | Met when |
+|---|---|
+| chart, or grill then spec | every slice of the spec without `astack:release` is closed by a merged PR, and the deploy run for the last merge commit succeeded |
+| build, fix, or refactor | its PR is merged, and the deploy run for its merge commit succeeded |
+| triage | every issue it was asked to sort has been classified and its changes applied, or held under Waiting on you |
+
+Release-only work (`astack:release`, such as Connect production) never holds up a development
+run. List it under Waiting on you for `ship`.
+
+When the goal is met, **reconcile the parents**. Close the spec if all its sub-issues are
+closed. Otherwise, comment on it that development is complete, listing the open release-only
+items. The map is already closed once its spec was filed.
+
 Stop when one of these is true:
-- **The goal is met**: every Scope issue is closed, and the deploy run for the last merge
-  commit succeeded.
+- **The goal is met**, and the parents are reconciled.
 - **Everything left in Scope waits on the user.**
 - **The user's narrowing is reached.**
 
