@@ -35,8 +35,10 @@ serves `main`, not the PR, so:
 - **Start the app locally** only when nothing can be deployed. Say so first, and stop it
   afterwards.
 
-Use the harness's browser automation. Post the results on the issue as the checklist below:
-each check marked passed or failed, with what was seen and the commit SHA it ran against.
+Use the harness's browser automation. Prefer the deployment's own URL over the shared one, and
+read the running commit from the health endpoint before checking anything. Post the results
+on the issue as the checklist below: each check marked passed or failed, with what was seen
+and the commit SHA it ran against.
 
 ## `manual`
 
@@ -45,8 +47,13 @@ Post one comment on the issue, and link it from the PR:
 ```markdown
 ## Checks for you
 
-Run it: <the PR preview URL for commit <head-sha>, or the development URL once the merge
-commit <merge-sha> has deployed, or the exact local commands from AGENTS.md>
+Run it: <the PR preview URL for commit <head-sha>; or, after merge, the deployment's own URL
+for commit <merge-sha> from the deploy run's summary; or the exact local commands from
+AGENTS.md>
+
+- [ ] **Right build**: open `<url>/health` (or the app's version screen). Expect commit
+  `<sha>`. A later `main` commit means a newer merge has deployed since. The checks still
+  cover this change, but note which commit you tested.
 
 - [ ] **<check>**: <steps>. Expect: <result>. Covers: <acceptance criterion>
 - [ ] ...

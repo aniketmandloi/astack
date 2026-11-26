@@ -144,8 +144,10 @@ refusal rather than retrying.
     starts with `refs/tags/v`, and it deploys exactly the revision it checked out.
   - each deploy job sets `environment:` so it gets that environment's secrets and gates, and
     `concurrency: deploy-<environment>` with `cancel-in-progress: false`.
-  - the deploy step uses the host's official CLI or action. After deploying, it checks the
-    health endpoint and runs the end-to-end smoke tests against the deployed URL. The job fails
+  - the deploy step uses the host's official CLI or action. After deploying, it checks that the
+    health endpoint reports the commit just deployed, then runs the end-to-end smoke tests
+    against the deployed URL. It records that deployment's own URL, when the host gives each
+    deployment one, in the job summary. The job fails
     if either fails.
 - Every workflow: top-level `permissions: contents: read`, raised per job only where needed
   (`id-token: write` for OIDC, `deployments: write`). Third-party actions are pinned to a full
@@ -160,7 +162,8 @@ refusal rather than retrying.
 
 ## Application baseline (built by the walking-skeleton slice)
 
-- A health endpoint (or the host's equivalent) that the deploy job checks.
+- A health endpoint (or the host's equivalent) that the deploy job checks. It reports the
+  commit SHA it was built from, so anyone can confirm which build they're looking at.
 - Structured logs, and error tracking tagged with the environment name.
 - Database changes only through versioned migrations that run as a deploy step. Each one
   must be safe to run against production while the previous release is still serving
