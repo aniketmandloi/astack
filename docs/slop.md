@@ -56,8 +56,9 @@ docs, and UI copy.
 
 ## CI gate
 
-`setup` (or the walking-skeleton slice) wires the mechanical rules into the required `ci`
-check, so a hit blocks the merge:
+When AStack manages `ci` (`docs/footprint.md`), `setup` (or the walking-skeleton slice) wires
+the mechanical rules into the required `ci` check, so a hit blocks the merge. When it doesn't,
+the deslop pass and `review` enforce them instead. The gate is:
 
 - The stack's linter, configured to fail on rules 1, 3, and 8: unused variables and imports,
   console or debug calls, explicit `any`, and suppression comments without a reason.
