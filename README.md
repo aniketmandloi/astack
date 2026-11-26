@@ -72,6 +72,8 @@ Both need the [GitHub CLI](https://cli.github.com/) signed in (`gh auth login`).
 - [docs/environments.md](docs/environments.md): development vs production, CI/CD, secrets,
   repo settings, releases
 - [docs/routing.md](docs/routing.md): which agent and model handles what
+- [docs/slop.md](docs/slop.md): what never ships, and what stops it: agent briefs, a
+  fresh-context deslop pass before every PR, `review`, and a CI gate that blocks the merge
 
 ## Credits
 

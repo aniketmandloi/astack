@@ -9,6 +9,8 @@ can pick up where another left off.
 - Run `gh repo view --json nameWithOwner,viewerPermission` before the first write of a session.
   In a fork `gh` can default to the upstream; confirm with the user when the repo is not theirs.
 - Refer to issues by title (with the link inside it), never by a bare `#number` wall.
+- Every issue, comment, PR body, and commit message follows the prose rules in
+  `docs/slop.md`.
 - Never merge a PR, delete a branch, or approve a production deployment without the user's
   explicit go-ahead in this session.
 
