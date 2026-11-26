@@ -20,7 +20,9 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
 3. **Labels.** Have the **clerk** create every label in `../../docs/github.md` with
    `gh label create <name> --color <hex> --description "<meaning>" --force`.
 4. **Files.** On branch `astack-setup`, brief the **builder** agent to write the files listed
-   under "Files `setup` writes", with the commands from step 2. Each workflow's third-party
+   under "Files `setup` writes", with the commands from step 2 and the slop gate from
+   `../../docs/slop.md` (ask the user before adding a dev dependency the gate needs; an
+   existing repo may need a first PR that clears current hits). Each workflow's third-party
    actions must be pinned to a commit SHA the scout looked up. If the repo has no application
    yet, write everything except `ci.yml` and `deploy.yml`; the walking-skeleton slice adds
    those. Verify the YAML parses, push, and open a PR. Merging it is the user's call.

@@ -90,8 +90,9 @@ refusal rather than retrying.
 ## Files `setup` writes
 
 - `.github/workflows/ci.yml`: on `pull_request` and push to `main`. One job with id `ci`:
-  install from the lockfile, format check, lint, typecheck, test, build. Commands come from
-  the project's own scripts.
+  install from the lockfile, format check, lint, typecheck, test, build, and the slop gate from
+  `docs/slop.md`. Commands come from the project's own scripts; the linter config, the
+  unused-code detector, and the marker grep are added to the project if missing.
 - `.github/workflows/deploy.yml`:
   - triggers: push to `main` → `development`; `release: published` → `production`;
     `workflow_dispatch` with a `ref` input → `production` (rollback to that tag).
