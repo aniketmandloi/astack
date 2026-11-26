@@ -25,7 +25,8 @@ Production changes only through a release (`../../docs/environments.md`). Comman
    skeleton's, but before the first release customers will use, list them and ship only on
    the user's explicit go-ahead.
 2. **Plan the release.** Show the user: the changes by PR title, every migration and new
-   variable, the rollback target (the previous tag), and a recommended version: major for
+   variable, the rollback target (the previous tag; on the first release there is none, so
+   say recovery means fixing forward), and a recommended version: major for
    breaking changes, minor for features, patch for fixes only. A version passed in wins.
 3. **Release on their go-ahead**:
    `gh release create v<X.Y.Z> --target <main-sha> --generate-notes`. This starts the
@@ -34,7 +35,8 @@ Production changes only through a release (`../../docs/environments.md`). Comman
    GitHub. Never approve it for them.
 5. **Watch** the deploy run (`gh run watch <run-id>`) through its health check and the smoke
    tests against production.
-6. **Failed?** Show the failing step's log and offer the rollback:
-   `gh workflow run deploy.yml -f ref=<previous-tag>`, then watch that run too. File an
-   `astack:bug` issue for the failure.
+6. **Failed?** Show the failing step's log and offer the rollback, dispatched on the previous
+   tag so production's tag policy accepts it: `gh workflow run deploy.yml --ref
+   <previous-tag>`. Watch that run too (`../../docs/environments.md`). On a first release,
+   offer to fix forward instead. File an `astack:bug` issue for the failure.
 7. **Report** the released version, its URL, the deploy run, and the health check result.

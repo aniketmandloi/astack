@@ -13,7 +13,8 @@ issue branch ──PR + CI──▶ main ──push──▶ deploy: development
 
 - Trunk-based: `main` is always deployable; short-lived branch per issue; squash merge.
 - Every merge to `main` deploys to **development**. A published GitHub release deploys that tag
-  to **production**. A manual run of the deploy workflow with an older tag is the rollback.
+  to **production**. The rollback is a manual run of the deploy workflow dispatched on an
+  older release tag.
 - PR previews, when the host offers them, deploy with development config and never touch
   production data.
 
@@ -107,7 +108,11 @@ refusal rather than retrying.
   unused-code detector, and the marker grep are added to the project if missing.
 - `.github/workflows/deploy.yml`:
   - triggers: push to `main` → `development`; `release: published` → `production`;
-    `workflow_dispatch` with a `ref` input → `production` (rollback to that tag).
+    `workflow_dispatch` with no inputs → `production`, for rollback. A rollback is dispatched
+    on the release tag itself (`gh workflow run deploy.yml --ref v1.2.3`). GitHub checks the
+    run's own ref against production's tag-only policy, so a run dispatched from `main` with
+    a tag passed as an input would be refused. The dispatched job fails unless `github.ref`
+    starts with `refs/tags/v`, and it deploys exactly the revision it checked out.
   - each deploy job sets `environment:` so it gets that environment's secrets and gates, and
     `concurrency: deploy-<environment>` with `cancel-in-progress: false`.
   - the deploy step uses the host's official CLI or action. After deploying, it checks the
@@ -137,3 +142,9 @@ refusal rather than retrying.
 - Semantic versioning tags `vX.Y.Z`; notes from `gh release create --generate-notes`.
 - A release is cut only from a `main` commit whose CI passed and whose development deploy
   succeeded.
+- The first release has no previous tag, so its only recovery is fixing forward: **fix**, then
+  a patch release. Releasing the walking skeleton early as `v0.1.0` means every release
+  customers see has a rollback target.
+- Rehearse once before the first customer, on a disposable app or right after the skeleton's
+  second release: dispatch a rollback to the previous tag, confirm production serves it, then
+  redeploy the current tag the same way.
