@@ -53,7 +53,9 @@ User gives a loose idea.
 1. **Name the destination** with the **grill** skill: usually "a spec ready to slice" for one
    project or feature, sometimes a single locked decision. It fixes the scope.
 2. **Map the frontier**: grill again breadth-first across the whole space. For a new project,
-   cover users and outcome, scope, stack and hosting, data, integrations, auth, development vs
+   settle first which artifact reaches a user, and how to verify that exact artifact
+   ("Artifact kinds" in `../../docs/environments.md`), because that shapes the walking
+   skeleton and every release check. Then cover users and outcome, scope, stack and hosting, data, integrations, auth, development vs
    production, look and feel (the design system and component library; the brand is the
    user's call), and the riskiest assumption. If no fog appears (the whole thing fits one
    session), you don't need a map: say so and offer **grill** then **spec** instead.
