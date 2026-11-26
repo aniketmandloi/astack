@@ -41,7 +41,9 @@ looked, re-brief the builder with its findings and relabel `tier:hard`.
 Don't trust the report alone. Read the diff against `main`, check each acceptance criterion
 against it, and run the project's checks yourself. Send failures back to the same tier with
 the output. Check the change for environment leaks: hard-coded URLs or keys, a new variable
-missing from `.env.example`, a migration that isn't safe against production.
+missing from `.env.example`, a migration that isn't safe against production. If the change
+adds, removes, or changes a project command, or sets a new convention, the AStack block in
+`AGENTS.md` must be updated in the same branch (`../../docs/agents-md.md`).
 
 ## 5. Deslop
 
