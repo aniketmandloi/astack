@@ -24,3 +24,6 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
    pass comes back clean.
 6. **Open the PR** closing the issue, with a short root-cause section: what was wrong, why, and
    why the fix is in the right place. Move the issue to `status:in-review`.
+7. **Hands-on checks** for a user-facing bug, as in the **build** skill
+   (`../../docs/app-checks.md`): the reproduction steps become the first check, and the
+   expected result is the fixed behaviour.

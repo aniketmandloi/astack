@@ -39,10 +39,12 @@ own issue. Use a **scout**
 first if the brief needs facts about the code that you don't have.
 
 The brief opens with the goal in one sentence, then holds: the repo path and branch, the
-issue title, body, and acceptance criteria,
-relevant comments, facts already found, the full text of `../../docs/slop.md`, and the
-instruction to work test-first, commit each verified step, and return its report. If the tweaker reports the change is bigger than it
-looked, re-brief the builder with its findings and relabel `tier:hard`.
+issue title, body, and acceptance criteria, relevant comments, facts already found, the full
+text of `../../docs/slop.md`, whether hands-on checks are `agent` (run end-to-end tests
+locally) or not (CI runs them; `../../docs/app-checks.md`), and the instruction to work
+test-first, commit each verified step, and return its report. If the tweaker reports the
+change is bigger than it looked, re-brief the builder with its findings and relabel
+`tier:hard`.
 
 ## 4. Verify
 
@@ -64,6 +66,13 @@ user what remains and stop. Run the CI gate's commands locally too when the repo
 ## 6. Open the PR
 
 Push the branch and open a PR with the body from `../../docs/github.md`, written to the prose
-rules in `../../docs/slop.md`. For UI changes, list
-exactly what the user should look at on screen; never start dev servers yourself. Move the
-issue to `status:in-review`, and offer the **review** skill.
+rules in `../../docs/slop.md`. Move the issue to `status:in-review`.
+
+## 7. Hands-on checks
+
+For a user-facing change, follow `../../docs/app-checks.md`. Read `ASTACK_APP_CHECKS`, and ask
+the user if it's unset. With `agent`, run the checks and post the results. With `manual`, post
+the "Checks for you" comment on the issue and link it from the PR. Never start a dev server
+unless the user chose `agent`.
+
+Then offer the **review** skill.
