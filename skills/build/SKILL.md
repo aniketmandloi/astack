@@ -1,6 +1,6 @@
 ---
 name: build
-description: Build one GitHub issue end to end - claim it, branch, have the right-tier agent implement it test-first, verify, push, and open a PR that closes it. Use for any feature, slice, UI change, or small tweak. Takes an issue number, a plain description of a small change (it files the issue first), or nothing (it picks the next ready issue).
+description: Build one GitHub issue end to end - claim it, branch, have the right-tier agent implement it test-first, verify, deslop, push, and open a PR that closes it. Use for any feature, slice, UI change, or small tweak. Takes an issue number, a plain description of a small change (it files the issue first), or nothing (it picks the next ready issue).
 argument-hint: "[issue | description]"
 ---
 
@@ -32,8 +32,8 @@ unlabelled, judge by the rules in `../../docs/routing.md` and add the label. Use
 first if the brief needs facts about the code that you don't have.
 
 The brief holds: the repo path and branch, the issue title, body, and acceptance criteria,
-relevant comments, facts already found, and the instruction to work test-first, commit each
-verified step, and return its report. If the tweaker reports the change is bigger than it
+relevant comments, facts already found, the full text of `../../docs/slop.md`, and the
+instruction to work test-first, commit each verified step, and return its report. If the tweaker reports the change is bigger than it
 looked, re-brief the builder with its findings and relabel `tier:hard`.
 
 ## 4. Verify
@@ -43,8 +43,17 @@ against it, and run the project's checks yourself. Send failures back to the sam
 the output. Check the change for environment leaks: hard-coded URLs or keys, a new variable
 missing from `.env.example`, a migration that isn't safe against production.
 
-## 5. Open the PR
+## 5. Deslop
 
-Push the branch and open a PR with the body from `../../docs/github.md`. For UI changes, list
+Brief a fresh **builder** agent for a deslop pass. It didn't write the code, so it reads the
+diff cold. Give it the branch, the diff against `main`, and the full text of
+`../../docs/slop.md`. Send every finding back to the tier that wrote the code, then run the
+pass again. Repeat until a pass comes back clean; after two rounds that aren't clean, show the
+user what remains and stop. Run the CI gate's commands locally too when the repo has them.
+
+## 6. Open the PR
+
+Push the branch and open a PR with the body from `../../docs/github.md`, written to the prose
+rules in `../../docs/slop.md`. For UI changes, list
 exactly what the user should look at on screen; never start dev servers yourself. Move the
 issue to `status:in-review`, and offer the **review** skill.

@@ -19,7 +19,8 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
    find the root cause and fix it there, not at the symptom. If it can't reproduce, have it
    report what it tried. Post that on the issue and ask the user for the missing detail rather
    than guessing at a fix.
-5. **Verify** as in the **build** skill: the reproducing test now passes, the rest of the suite
-   still passes, and the diff touches only what the root cause needs.
+5. **Verify and deslop** as in the **build** skill: the reproducing test now passes, the rest
+   of the suite still passes, the diff touches only what the root cause needs, and a deslop
+   pass comes back clean.
 6. **Open the PR** closing the issue, with a short root-cause section: what was wrong, why, and
    why the fix is in the right place. Move the issue to `status:in-review`.
