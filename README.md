@@ -71,6 +71,8 @@ Both need the [GitHub CLI](https://cli.github.com/) signed in (`gh auth login`).
 - [docs/github.md](docs/github.md): labels, issue bodies, `gh` operations, branch and PR rules
 - [docs/environments.md](docs/environments.md): development vs production, CI/CD, secrets,
   repo settings, releases
+- [docs/launch.md](docs/launch.md): launch readiness that `chart` plans for every new
+  customer-facing project, and `ship` checks before the first customer release
 - [docs/routing.md](docs/routing.md): which agent and model handles what
 - [docs/slop.md](docs/slop.md): what never ships, and what stops it: agent briefs, a
   fresh-context deslop pass before every PR, `review`, and a CI gate that blocks the merge
