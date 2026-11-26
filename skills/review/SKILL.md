@@ -15,6 +15,9 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
    - each acceptance criterion: met, with the code or test that shows it, or not met
    - tests: they test behaviour, fail without the change, and cover the edge cases the issue names
    - correctness: concrete inputs that break it
+   - blast radius: the callers, consumers, jobs, and data outside the diff that depend on what
+     changed. For each one, show why it's safe by naming the test that covers it, or by
+     running it. "Looks fine" doesn't count
    - security: secrets in code or logs, injection, missing authorization, unsafe input handling
    - environments: hard-coded environment values, variables missing from `.env.example`,
      migrations unsafe against production, config that only works in one environment
