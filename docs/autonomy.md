@@ -35,8 +35,9 @@ don't block, and stops only when everything left waits on the user.
   product's name and brand, and anything the user has said they'll decide.
 - **Reversing a user decision**: anything that contradicts what the user decided earlier.
 - **Repo setup**: `/astack:setup` is the user's to run.
-- **Visual checks**: UI changes merge to development, and "check on the development site"
-  joins the list.
+- **Hands-on checks** (`docs/app-checks.md`): with `ASTACK_APP_CHECKS` unset, the run uses
+  `manual` and adds the question to the list. Each "Checks for you" comment joins the list
+  too, and the change still merges to development, where the checks are run.
 
 ## Recording
 

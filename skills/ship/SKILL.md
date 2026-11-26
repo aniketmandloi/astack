@@ -18,6 +18,8 @@ Production changes only through a release (`../../docs/environments.md`). Comman
    - open `astack:bug` issues in production, and whether the default-branch ruleset exists
      (create it now if CI exists and setup deferred it)
    - open `astack:launch` issues
+   - unticked "Checks for you" items on issues closed since the last release
+     (`../../docs/app-checks.md`)
    Stop on a red CI run, a failed development deploy, or a missing production secret, and say
    what to do about each. Open launch issues don't block an early release like the walking
    skeleton's, but before the first release customers will use, list them and ship only on
@@ -30,7 +32,8 @@ Production changes only through a release (`../../docs/environments.md`). Comman
    production deploy.
 4. **Approve.** If production requires a reviewer, give the user the run link to approve in
    GitHub. Never approve it for them.
-5. **Watch** the deploy run (`gh run watch <run-id>`) through its health check.
+5. **Watch** the deploy run (`gh run watch <run-id>`) through its health check and the smoke
+   tests against production.
 6. **Failed?** Show the failing step's log and offer the rollback:
    `gh workflow run deploy.yml -f ref=<previous-tag>`, then watch that run too. File an
    `astack:bug` issue for the failure.
