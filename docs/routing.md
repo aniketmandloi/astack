@@ -9,8 +9,8 @@ applies when the user types `/name`; an agent's `model` and `effort` apply every
 |---|---|---|---|
 | **builder** | Difficult code: features, multi-file changes, architecture, migrations, security, root-cause debugging, reviews | `astack:builder`: `claude-opus-5-5`, effort `high` | `astack_builder`: `gpt-6.2-sol`, `high` |
 | **tweaker** | Small contained edits: copy, style, small UI, renames, config bumps | `astack:tweaker`: `claude-sonnet-5-5`, effort `high` | `astack_tweaker`: `gpt-6.2-sol`, `high` |
-| **scout** | Read-only fact finding: code search, `gh` reads, docs, versions | `astack:scout`: `claude-haiku-5-5`, effort `high` | `astack_scout`: `gpt-6.2-sol`, `high` |
-| **clerk** | Mechanical, fully specified `gh` writes in bulk | `astack:clerk`: `claude-haiku-5-5`, effort `high` | `astack_clerk`: `gpt-6.2-sol`, `high` |
+| **scout** | Read-only fact finding: code search, `gh` reads, docs, versions | `astack:scout`: `claude-haiku-5-5`, effort `high` | `astack_scout`: `gpt-6.2-sol`, `low` |
+| **clerk** | Mechanical, fully specified `gh` writes in bulk | `astack:clerk`: `claude-haiku-5-5`, effort `high` | `astack_clerk`: `gpt-6.2-sol`, `low` |
 
 To change a tier, edit one line in `agents/<name>.md` (Claude Code) or
 `codex/agents/astack_<name>.toml` (Codex), and keep the pair's instructions in sync.
