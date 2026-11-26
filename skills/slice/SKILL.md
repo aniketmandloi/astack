@@ -55,9 +55,18 @@ Label each slice for routing (`../../docs/routing.md`):
 3. Draft the slices in build order: title, one-line what, acceptance criteria, tier, and what
    each is blocked by. Present the list to the user and apply their changes before creating
    anything.
-4. Create them with the **clerk** agent: each issue labelled `astack:slice`, `status:ready`,
-   and its tier; then, in a second pass, link each as a sub-issue of the spec and wire its
-   blocked-by edges. Give the clerk the exact bodies and the operations from
-   `../../docs/github.md`.
-5. Report the slices by title with links, and which are startable now. Offer the **build**
+4. **Post the plan** as a comment on the spec headed `## Slice plan`. Each slice gets one
+   line: `- [ ] <title>: <one-line what> (blocked by: <titles>)`. This comment records
+   progress.
+5. Create the slices with the **clerk** agent: each issue labelled `astack:slice`,
+   `status:ready`, and its tier; then, in a second pass, link each as a sub-issue of the spec
+   and wire its blocked-by edges. Give the clerk the exact bodies and the operations from
+   `../../docs/github.md`. Tick a plan line, adding the issue link, only once that slice is
+   created, linked, and wired.
+6. Report the slices by title with links, and which are startable now. Offer the **build**
    skill on the first one.
+
+**Resuming**: if the spec already has a Slice plan with unticked lines, skip drafting. For
+each unticked line, find any issue that was already created (by title, among the spec's
+sub-issues and open `astack:slice` issues). Finish whatever it's missing (creation, link, or
+edges), then tick the line. A spec is fully sliced only when every line of its plan is ticked.
