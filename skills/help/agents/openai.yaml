@@ -1,0 +1,3 @@
+interface:
+  display_name: "AStack help"
+  short_description: "Answer questions and say what to do next"
