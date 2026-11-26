@@ -38,9 +38,12 @@ Each ticket is **HITL** (worked live with the user, who speaks for themselves) o
   Resolved by a **scout** agent (`../../docs/routing.md`), which returns findings with sources;
   post them as the resolution comment.
 - `decision:prototype` (HITL): a cheap, rough artifact to react to when "how should it look or
-  behave" is the question. Build it with the **tweaker** agent (the **builder** agent for logic
-  prototypes) on a throwaway `prototype/<n>-<slug>` branch, push it, link it from the ticket,
-  never merge it.
+  behave" is the question. Build it with the **tweaker** agent, UI and logic alike, under
+  throwaway rules: the quickest rough version that answers the ticket's question, with no
+  test-first, no slop pass, and no project checks. Use the **builder** only for a feasibility
+  spike, where the question itself is hard: performance, concurrency, or whether a tricky API
+  can do something at all. It goes on a throwaway `prototype/<n>-<slug>` branch that's pushed,
+  linked from the ticket, and never merged.
 - `decision:grilling` (HITL): conversation, the default. Use the **grill** skill.
 - `decision:task` (HITL or AFK): work that must happen before a decision can be made, such as
   signing up for a service or provisioning access. The resolution records what was done and

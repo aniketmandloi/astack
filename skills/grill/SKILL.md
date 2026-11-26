@@ -34,7 +34,8 @@ wait, so ask the rest of the frontier now.
 A "which approach" question whose answer you could observe by running something (behaviour,
 speed, output, layout, whether a library handles the case) isn't the user's to answer either.
 Settle it with a quick throwaway experiment: a **scout** for a check that only reads, the
-**tweaker** on a `prototype/<slug>` branch for one that needs code. Bring the result to the
+**tweaker** on a `prototype/<slug>` branch for one that needs code, under the throwaway rules
+in the **chart** skill's prototype tickets. Bring the result to the
 round. Only product and preference calls that no experiment can settle go to the user.
 
 For a product or project, make sure the tree covers: who it is for and the outcome they get,
