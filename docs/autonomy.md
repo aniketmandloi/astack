@@ -61,6 +61,10 @@ there the instructions are the only guard.
 ## Grant
 <the default grant, plus any narrowing the user gave>
 
+## Scope
+- [<map, spec, or issue that holds the goal>](<url>)
+- [<issue the run filed>](<url>): <why it was filed>
+
 ## Progress
 - [<issue or PR title>](<url>): <state>
 
