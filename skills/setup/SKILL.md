@@ -8,7 +8,10 @@ disable-model-invocation: true
 
 Installs the GitHub side of AStack in the current repo. Practices and exact commands:
 `../../docs/environments.md`. Labels and bodies: `../../docs/github.md`. Routing:
-`../../docs/routing.md`. Everything is idempotent: check what exists before creating it.
+`../../docs/routing.md`. Everything is idempotent. Each step first compares what it would
+create with what already exists on GitHub (labels, files on `main` or the `astack-setup`
+branch, settings, environments, variables), then does only what's missing. So a rerun after
+an interruption resumes where it stopped.
 
 1. **Confirm the target.** `gh repo view --json nameWithOwner,visibility,viewerPermission` and
    `gh api user --jq .plan.name`. You need admin permission. A `null` plan means the token
@@ -49,5 +52,8 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
 7. **Branch ruleset.** Once CI has run and the `ci` check exists, create the default-branch
    ruleset. When there's no CI yet, say it waits for the walking skeleton and that the
    **ship** skill re-checks it.
-8. **Report** a table: each item applied, skipped as already present, or not available on this
+8. **Mark it done.** Once steps 3 to 6 are in place, meaning the setup PR is open or merged,
+   run `gh variable set ASTACK_SETUP --body complete`. Other skills treat the repo as set up
+   only when this variable reads `complete`. Labels alone mean an interrupted setup.
+9. **Report** a table: each item applied, skipped as already present, or not available on this
    plan, including the effective branch-retention setting. Then point to the next step: **chart** for a new project, **build** for an existing one.
