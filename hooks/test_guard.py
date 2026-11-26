@@ -36,7 +36,17 @@ class GuardTest(unittest.TestCase):
         self.assertDenied("git push origin --delete 12-login")
         self.assertDenied("git push origin :12-login")
         self.assertDenied("git branch -D 12-login")
+        self.assertDenied("git branch -d 12-login")
+        self.assertDenied("git branch --delete 12-login")
         self.assertAllowed("git branch 12-login")
+        self.assertAllowed("git branch --show-current")
+
+    def test_ordinary_git(self):
+        self.assertAllowed("git status && git diff origin/main...HEAD")
+        self.assertAllowed("git fetch origin && git rebase origin/main")
+        self.assertAllowed('git commit -m "Remove the -f flag from the docs"')
+        self.assertAllowed("git checkout -b 12-login origin/main")
+        self.assertAllowed("git log --oneline -5 | cat")
 
     def test_rm(self):
         self.assertDenied("rm -rf /")
@@ -60,7 +70,11 @@ class GuardTest(unittest.TestCase):
     def test_sql(self):
         self.assertDenied('psql "$DATABASE_URL" -c "DROP TABLE users"')
         self.assertDenied("echo 'truncate table orders;' | psql")
+        self.assertDenied("sqlite3 app.db 'drop table sessions'")
         self.assertAllowed("psql -c 'select * from users'")
+        self.assertAllowed('gh issue create --title "Migration" --body "This migration must not DROP TABLE users"')
+        self.assertAllowed('git commit -m "Document why we never truncate table orders"')
+        self.assertAllowed("grep -rn 'DROP TABLE' migrations/")
 
     def test_other_tools_and_bad_input(self):
         payload = json.dumps({"tool_name": "Read", "tool_input": {"file_path": "/"}})

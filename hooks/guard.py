@@ -13,6 +13,7 @@ import sys
 
 SEGMENT_SPLIT = re.compile(r"&&|\|\||[;|\n]")
 SQL_DESTRUCTIVE = re.compile(r"\b(drop\s+(table|database|schema)|truncate\s+(table\s+)?\w)", re.I)
+SQL_CLIENTS = {"psql", "mysql", "mariadb", "sqlite3", "sqlcmd", "duckdb", "cockroach", "clickhouse-client"}
 PROTECTED_BRANCH = re.compile(r"(^|:)(refs/heads/)?(main|master)$")
 
 
@@ -44,8 +45,8 @@ def check_git(args):
             return "force-push to main"
         if "--delete" in rest or "-d" in rest or any(a.startswith(":") and len(a) > 1 for a in rest):
             return "deleting a remote branch"
-    if sub == "branch" and ("-D" in rest or ("--delete" in rest and "--force" in rest)):
-        return "force-deleting a branch"
+    if sub == "branch" and any(a in ("-d", "-D", "--delete") for a in rest):
+        return "deleting a branch"
     return None
 
 
@@ -77,10 +78,13 @@ def check_gh(args):
 
 
 def reason_to_block(command, cwd):
-    if SQL_DESTRUCTIVE.search(command):
+    segments = [tokens(s.strip()) for s in SEGMENT_SPLIT.split(command)]
+    # SQL only counts when a database client runs it; prose in an issue body or commit
+    # message that mentions DROP TABLE is not a database operation.
+    runs_sql_client = any(os.path.basename(w) in SQL_CLIENTS for words in segments for w in words)
+    if runs_sql_client and SQL_DESTRUCTIVE.search(command):
         return "dropping or truncating database objects"
-    for segment in SEGMENT_SPLIT.split(command):
-        words = tokens(segment.strip())
+    for words in segments:
         for name, check in (("git", check_git), ("gh", check_gh)):
             args = after(words, name)
             if args is not None:
