@@ -25,10 +25,17 @@ or `manual`. Read it with `gh variable get ASTACK_APP_CHECKS`.
 
 ## `agent`
 
-Check against the deployed development URL, or a PR preview when the host provides one,
-using the harness's browser automation. Start the app locally only when nothing is
-deployed. Say so first, and stop it afterwards. Post the results on the issue as the
-checklist below, each check marked passed or failed, with what was seen.
+A hands-on check must run against the exact code it vouches for. The shared development URL
+serves `main`, not the PR, so:
+
+- **Before merge**: check only a PR preview whose deployment commit is the PR's head SHA.
+- **No preview**: defer the checks until after the merge, once the deploy run for the merge
+  commit has succeeded (`docs/github.md`, "Commits, verdicts, and deploys").
+- **Start the app locally** only when nothing can be deployed. Say so first, and stop it
+  afterwards.
+
+Use the harness's browser automation. Post the results on the issue as the checklist below:
+each check marked passed or failed, with what was seen and the commit SHA it ran against.
 
 ## `manual`
 
@@ -37,7 +44,8 @@ Post one comment on the issue, and link it from the PR:
 ```markdown
 ## Checks for you
 
-Run it: <the exact commands from AGENTS.md, or the development URL once deployed>
+Run it: <the PR preview URL for commit <head-sha>, or the development URL once the merge
+commit <merge-sha> has deployed, or the exact local commands from AGENTS.md>
 
 - [ ] **<check>**: <steps>. Expect: <result>. Covers: <acceptance criterion>
 - [ ] ...
