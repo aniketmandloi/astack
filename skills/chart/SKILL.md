@@ -56,6 +56,10 @@ User gives a loose idea.
    cover users and outcome, scope, stack and hosting, data, integrations, auth, development vs
    production, and the riskiest assumption. If no fog appears (the whole thing fits one
    session), you don't need a map: say so and offer **grill** then **spec** instead.
+   For a new project that will have customers, the map always covers launch readiness: every
+   item in `../../docs/launch.md` becomes a decision ticket of the type it names, unless it
+   is already decided (record it in Decisions so far) or doesn't apply (rule it out of scope
+   with the reason).
 3. **Create the map** issue: Destination and Notes filled, Decisions so far empty, fog sketched.
 4. **Create the tickets** you can specify now as sub-issues of the map, then wire blocked-by
    edges in a second pass. Use the **clerk** agent for this when there are three or more.
