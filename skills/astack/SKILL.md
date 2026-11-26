@@ -12,9 +12,13 @@ pinned models (`../../docs/routing.md`). Any request can enter here, at any stag
 ## 1. Orient
 
 Send a **scout** agent to report, read-only:
-- the repo (`gh repo view --json nameWithOwner,visibility`) and whether AStack is set up:
-  `gh variable get ASTACK_SETUP` reads `complete`. AStack labels without that variable mean
-  setup was interrupted.
+- the repo (`gh repo view --json nameWithOwner,visibility`) and whether AStack is set up,
+  from `gh variable get ASTACK_SETUP`:
+  - `complete`: set up.
+  - `awaiting-merge`: set up only once the `astack-setup` PR has merged and its files are on
+    the default branch. If they are, set the variable to `complete`. If the PR is still open,
+    the next step is the user merging it. If it closed unmerged, setup needs a rerun.
+  - unset with AStack labels present: an interrupted setup.
 - open `astack:map`, `astack:spec`, `astack:slice`, and `astack:bug` issues, with status,
   tier, and assignee
 - open PRs and their check status, and whether the repo has application code yet
