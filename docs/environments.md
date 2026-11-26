@@ -98,16 +98,17 @@ refusal rather than retrying.
 ## Files `setup` writes
 
 - `.github/workflows/ci.yml`: on `pull_request` and push to `main`. One job with id `ci`:
-  install from the lockfile, format check, lint, typecheck, test, build, and the slop gate from
-  `docs/slop.md`. Commands come from the project's own scripts; the linter config, the
+  install from the lockfile, format check, lint, typecheck, test, the end-to-end tests
+  (`docs/app-checks.md`), build, and the slop gate from `docs/slop.md`. Commands come from the project's own scripts; the linter config, the
   unused-code detector, and the marker grep are added to the project if missing.
 - `.github/workflows/deploy.yml`:
   - triggers: push to `main` → `development`; `release: published` → `production`;
     `workflow_dispatch` with a `ref` input → `production` (rollback to that tag).
   - each deploy job sets `environment:` so it gets that environment's secrets and gates, and
     `concurrency: deploy-<environment>` with `cancel-in-progress: false`.
-  - the deploy step uses the host's official CLI or action. After deploying it checks the
-    health endpoint and fails the job if that check fails.
+  - the deploy step uses the host's official CLI or action. After deploying, it checks the
+    health endpoint and runs the end-to-end smoke tests against the deployed URL. The job fails
+    if either fails.
 - Every workflow: top-level `permissions: contents: read`, raised per job only where needed
   (`id-token: write` for OIDC, `deployments: write`). Third-party actions are pinned to a full
   commit SHA with the version in a trailing comment.
