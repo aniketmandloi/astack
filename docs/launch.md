@@ -34,5 +34,6 @@ The spec's Launch section splits each decided item into:
 - **Build work** (legal pages, deletion endpoint, analytics event, health monitoring): normal
   slices labelled `astack:launch`.
 - **User work** (buying the domain, activating live payments, signing provider terms): slices
-  labelled `astack:launch`, assigned to the user, with a checklist body. Agents never take
-  them because they are already assigned.
+  labelled `astack:launch` and `astack:release`, assigned to the user, with a checklist body.
+  Agents never take them because they are already assigned, and development runs don't wait
+  on them.

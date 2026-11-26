@@ -32,20 +32,31 @@ spec's artifact that reaches the development channel for its kind (see "Artifact
   package ecosystem in `dependabot.yml`, and the Commands and Conventions sections of the
   AStack block in `AGENTS.md` (`../../docs/agents-md.md`)
 
-Merging it delivers to development. Every other slice is blocked by it.
+Merging it delivers to development.
 
-The walking skeleton is itself blocked by a user-work slice, **Connect development**. In it the
-user sets up only what the development channel needs (a host project, a test track, or a
-registry token), and sets each secret with the command for the repo's `ASTACK_SECRETS_MODE`
-(`../../docs/environments.md`). A second user-work slice, **Connect production**, does the
-same for production. It blocks no slice, but `ship` won't release until it's closed, so
-production provisioning can wait until the first usable flow works. Each body names every
-secret the workflow will read, already written in that mode's form, and each is assigned to
-the user with a checklist body.
+Two user-work slices go with it. Each is assigned to the user, and each has a checklist body
+that names every secret the workflow will read, already written in the form for the repo's
+`ASTACK_SECRETS_MODE` (`../../docs/environments.md`):
+- **Connect development**: only what the development channel needs (a host project, a test
+  track, or a registry token), plus its secrets.
+- **Connect production**: the same for production. It's labelled `astack:release`.
+
+A new project's blocked-by edges follow exactly this order:
+
+```
+Connect development  →  walking skeleton  →  every application slice
+Connect production   (no edges; ship requires it closed)
+```
+
+Connect development blocks only the skeleton. The skeleton blocks every other buildable slice.
+Connect production neither blocks nor is blocked, so production provisioning can wait until
+the first usable flow works.
 
 When the spec has a Launch section, each item's work becomes a slice that also carries
 `astack:launch`, as `../../docs/launch.md` describes. Build work is a normal slice with a tier.
-User work is assigned to the user and has a checklist body instead of acceptance criteria.
+User work, such as buying the domain or activating live payments, is assigned to the user,
+has a checklist body instead of acceptance criteria, and is also labelled `astack:release`
+because it only has to be done before a release.
 
 ## Tier
 
