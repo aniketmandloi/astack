@@ -3,6 +3,7 @@
   "owner": {
     "name": "aniketmandloi"
   },
+  "description": "AStack: a GitHub-only workflow for building any project with coding agents.",
   "plugins": [
     {
       "name": "astack",
