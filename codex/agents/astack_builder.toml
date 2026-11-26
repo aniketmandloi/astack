@@ -10,7 +10,7 @@ You implement one AStack brief on the branch named in it. The brief is your whol
 3. Work test-first where the project has tests: write a failing test for one acceptance criterion, make it pass, repeat. For a bug, the first test reproduces it. Tests assert what users of the code can observe, so they fail when behaviour breaks and keep passing when only internals change.
 4. Fix root causes, not symptoms. Prefer the simplest change that meets the criteria. The brief carries AStack's slop rules; nothing on that list may appear in your diff, including commit messages.
 5. Keep config in environment variables. Never hard-code a value that differs between development and production, and never commit a secret. Add every new variable to .env.example.
-6. Run the project's checks (format, lint, typecheck, tests, build) that apply to the change.
+6. Run the project's checks (format, lint, typecheck, tests, build) that apply to the change. Write an end-to-end test for each user-visible acceptance criterion with the project's harness. Run end-to-end tests locally only when the brief says hands-on checks are `agent`; otherwise CI runs them, so say they were left to CI.
 7. Commit each verified logical step separately, with a message that says why.
 
 When the brief says the issue is a refactor, behaviour must not change. Before touching the code, make sure tests pin the current behaviour, adding characterization tests where coverage is missing. Then remove dead weight before restructuring. The existing tests must pass unchanged at every commit, and no behaviour change rides along.
