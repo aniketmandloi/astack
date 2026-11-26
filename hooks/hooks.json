@@ -1,0 +1,17 @@
+{
+  "description": "AStack guard: denies destructive Bash commands such as force-pushes, branch deletion, rm -rf outside the working directory, GitHub deletes, and dropping database objects.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/guard.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
