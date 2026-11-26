@@ -14,8 +14,10 @@ AStack owns only the text between `<!-- astack:start -->` and `<!-- astack:end -
   walking-skeleton slice adds them."
 - Conventions come only from evidence in the code (the scout reports them with file paths).
   Leave the section out rather than invent conventions.
-- Keep the block under 60 lines. The code rules restate `docs/slop.md` one line each; keep the
+- Keep the block under 70 lines. The code rules restate `docs/slop.md` one line each; keep the
   two in sync.
+- Pitfalls come only from `retro`: each one is a mistake agents made here more than once that
+  no stronger guard could prevent. Leave the section out until there is one.
 
 ## Existing files
 
@@ -83,5 +85,9 @@ None of these ship:
 ### Conventions
 
 - <convention found in the code, with an example path>
+
+### Pitfalls
+
+- <a mistake agents have repeated here, and what to do instead>
 <!-- astack:end -->
 ```
