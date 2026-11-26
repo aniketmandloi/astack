@@ -31,7 +31,8 @@ Send `tier:hard` to the **builder** agent and `tier:small` to the **tweaker** ag
 unlabelled, judge by the rules in `../../docs/routing.md` and add the label. Use a **scout**
 first if the brief needs facts about the code that you don't have.
 
-The brief holds: the repo path and branch, the issue title, body, and acceptance criteria,
+The brief opens with the goal in one sentence, then holds: the repo path and branch, the
+issue title, body, and acceptance criteria,
 relevant comments, facts already found, the full text of `../../docs/slop.md`, and the
 instruction to work test-first, commit each verified step, and return its report. If the tweaker reports the change is bigger than it
 looked, re-brief the builder with its findings and relabel `tier:hard`.

@@ -20,8 +20,9 @@ To change a tier, edit one line in `agents/<name>.md` (Claude Code) or
 - **Claude Code**: call the Agent tool with `subagent_type` set to the agent's name above.
 - **Codex**: spawn the custom agent by its name above.
 
-A brief is self-contained: the agent sees none of the conversation. Include the issue number
-and body, its acceptance criteria, the branch, the facts already found, and what to return.
+A brief is self-contained: the agent sees none of the conversation. Open it with the goal in
+one sentence (what the work gives its user), then the issue number and body, its acceptance
+criteria, the branch, the facts already found, and what to return.
 For the builder and tweaker, include the full text of `docs/slop.md`. For the clerk, include
 the exact `gh` commands from `docs/github.md` it should use.
 
