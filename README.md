@@ -31,6 +31,9 @@ which runs every step itself under the rules in [docs/autonomy.md](docs/autonomy
 | `build` | Takes one issue to a tested PR through the right-tier agent |
 | `fix` | Takes a bug to a reproducing test, a root-cause fix, and a PR |
 | `review` | Reviews a PR against its issue in a fresh context and posts the findings |
+| `babysit` | Keeps a PR merge-ready: CI failures, merge conflicts, review comments. Never merges |
+| `triage` | Sorts unlabelled issues and customer feedback into bugs, slices, and plans |
+| `retro` | Turns mistakes that repeated across a finished spec into guards: types, lint rules, tests, pitfalls |
 | `setup` | One-time repo setup: labels, templates, CI/CD, dev and prod environments, rules *(you start it)* |
 | `ship` | Cuts a release and watches the gated production deploy *(you start it)* |
 | `mode` | Autonomous: drives a goal through every stage to development on its own, records each decision on GitHub, and pauses only for production, money, secrets, destructive actions, and your calls *(you start it)* |
@@ -81,6 +84,8 @@ Both need the [GitHub CLI](https://cli.github.com/) signed in (`gh auth login`).
 - [docs/github.md](docs/github.md): labels, issue bodies, `gh` operations, branch and PR rules
 - [docs/environments.md](docs/environments.md): development vs production, CI/CD, secrets,
   repo settings, releases
+- [docs/app-checks.md](docs/app-checks.md): end-to-end and smoke tests in CI, and hands-on
+  checks that the agent runs or writes up for you (`ASTACK_APP_CHECKS`)
 - [docs/launch.md](docs/launch.md): launch readiness that `chart` plans for every new
   customer-facing project, and `ship` checks before the first customer release
 - [docs/agents-md.md](docs/agents-md.md): the rules block `setup` writes into each project's

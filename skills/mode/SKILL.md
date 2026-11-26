@@ -65,4 +65,5 @@ The final reply, mirrored as a comment on the run issue:
 - Waiting on you, with exact commands or places
 - what was measured, and what remains unverified
 
-When the goal is met, close the run issue and tell the user `/astack:ship` releases it.
+When the goal is met, run the **retro** skill on its spec and include the retro issue in the
+report. Close the run issue, and tell the user `/astack:ship` releases it.
