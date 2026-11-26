@@ -24,6 +24,10 @@ framework's official generator, add the health endpoint, one passing test, and t
 workflows with the slop gate, the package ecosystem in `dependabot.yml`, and the commands in
 `AGENTS.md`, so that merging it deploys to development. Every other slice is blocked by it.
 
+When the spec has a Launch section, each item's work becomes a slice that also carries
+`astack:launch`, as `../../docs/launch.md` describes. Build work is a normal slice with a tier.
+User work is assigned to the user and has a checklist body instead of acceptance criteria.
+
 ## Tier
 
 Label each slice for routing (`../../docs/routing.md`):
