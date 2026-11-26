@@ -23,6 +23,7 @@ which runs every step itself under the rules in [docs/autonomy.md](docs/autonomy
 | Skill | Does |
 |---|---|
 | `astack` | Entry point: orients from GitHub and routes any request |
+| `help` | Read-only guide: answers any question about AStack from its own files, and says what to do next in this repo |
 | `chart` | Maps a large effort (a new project, a big feature) as decision tickets, one per session |
 | `grill` | Interviews you until every decision in a one-session plan is settled |
 | `spec` | Writes settled decisions up as an `astack:spec` issue |
