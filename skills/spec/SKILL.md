@@ -21,6 +21,9 @@ labelled `astack:spec` with the body in `../../docs/github.md`.
    slices' acceptance criteria. **Technical approach** names the modules, data model, and
    interfaces, not the code. **Environments** lists every new variable and secret per
    environment, any migration, and how to roll back (`../../docs/environments.md`).
+   **Launch**, for a new customer-facing project, covers every item in
+   `../../docs/launch.md` from the map's launch tickets, with its work split into build work
+   and user work.
 5. **Show the draft to the user** and apply their corrections.
 6. **File it**: create the issue; when it came from a map, make it a sub-issue of the map and
    post its link as the map's closing comment.

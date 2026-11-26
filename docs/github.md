@@ -24,6 +24,7 @@ can pick up where another left off.
 | `astack:spec` | A settled spec, ready to slice |
 | `astack:slice` | A vertical slice of a spec: buildable work |
 | `astack:bug` | A bug report |
+| `astack:launch` | A slice needed before the first customer (`docs/launch.md`); added alongside `astack:slice` |
 | `status:ready` | Buildable now, pending only its blockers |
 | `status:in-progress` | Claimed (the assignee is the claim) |
 | `status:in-review` | A PR is open for it |
@@ -77,6 +78,9 @@ The answer is recorded as a resolution comment, never edited into the body.
 <modules, data model, interfaces, third-party services>
 ## Environments
 <new config and secrets per environment, migrations, rollout and rollback notes>
+## Launch
+<new customer-facing projects: each docs/launch.md item, its decision (or "out of scope:
+reason"), and its work, split into build work and user work>
 ## Risks
 ## Open questions
 <must be empty before slicing>
