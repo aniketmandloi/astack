@@ -7,7 +7,8 @@ CI enforces the mechanical rules (see "CI gate" below).
 
 ## Code
 
-Each rule is checked against the diff, and a hit is reported with file:line.
+Each rule is checked against the diff, and a hit is reported with file:line. The one-line
+versions in the `docs/agents-md.md` template must change whenever these do.
 
 1. **Dead code.** Unused functions, exports, variables, imports, parameters, files, feature
    flags, or dependencies, including ones the change made unused.
