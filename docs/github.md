@@ -25,6 +25,7 @@ can pick up where another left off.
 | `astack:spec` | A settled spec, ready to slice |
 | `astack:slice` | A vertical slice of a spec: buildable work |
 | `astack:bug` | A bug report |
+| `astack:retro` | A retro of finished work; its guards are slice sub-issues |
 | `astack:run` | An astack mode run's tracking issue (`docs/autonomy.md`) |
 | `astack:launch` | A slice needed before the first customer (`docs/launch.md`); added alongside `astack:slice` |
 | `status:ready` | Buildable now, pending only its blockers |
