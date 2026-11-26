@@ -142,7 +142,9 @@ refusal rather than retrying.
     run's own ref against production's tag-only policy, so a run dispatched from `main` with
     a tag passed as an input would be refused. The dispatched job fails unless `github.ref`
     starts with `refs/tags/v`, and it deploys exactly the revision it checked out.
-  - each deploy job sets `environment:` so it gets that environment's secrets and gates, and
+  - each deploy job gets its secrets and gates the way the repo's `ASTACK_SECRETS_MODE` says
+    (the "Secrets mode" table above): `environment:` in `environments` mode, and the
+    `DEV_`/`PROD_` mapping with no `environment:` key in `prefixed` mode. Either way it sets
     `concurrency: deploy-<environment>` with `cancel-in-progress: false`.
   - the deploy step uses the host's official CLI or action. After deploying, it checks that the
     health endpoint reports the commit just deployed, then runs the end-to-end smoke tests
