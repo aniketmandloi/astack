@@ -17,6 +17,7 @@ Production changes only through a release (`../../docs/environments.md`). Comman
      (`../../docs/environments.md`), against the variables those PRs and `.env.example` need
    - open `astack:bug` issues in production, and whether the default-branch ruleset exists
      (create it now if CI exists and setup deferred it)
+   - whether the **Connect production** slice is closed; stop if it isn't
    - open `astack:launch` issues
    - unticked "Checks for you" items on issues closed since the last release
      (`../../docs/app-checks.md`)

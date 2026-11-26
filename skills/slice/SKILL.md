@@ -19,20 +19,29 @@ Turn an `astack:spec` issue into buildable work: `astack:slice` sub-issues with 
   by a test or a stated manual check. A user-facing slice includes an end-to-end test of its
   main flow.
 
-For a new project, the first slice is the **walking skeleton**: scaffold the app with the
-framework's official generator (non-interactive flags), add the health endpoint, one passing
-test, the end-to-end harness with one smoke test (`../../docs/app-checks.md`), and the
-baseline in
-`../../docs/environments.md`, plus whatever `setup` deferred: the `ci.yml` and `deploy.yml`
-workflows with the slop gate, the package ecosystem in `dependabot.yml`, and the Commands and
-Conventions sections of the AStack block in `AGENTS.md` (`../../docs/agents-md.md`), so that
-merging it deploys to development. Every other slice is blocked by it.
+For a new project, the first slice is the **walking skeleton**: the thinnest version of the
+spec's artifact that reaches the development channel for its kind (see "Artifact kinds" in
+`../../docs/environments.md`). It includes:
+- the app scaffolded with the framework's official generator, using non-interactive flags
+- one passing test
+- the end-to-end harness, with one smoke test against that exact artifact
+  (`../../docs/app-checks.md`)
+- the baseline in `../../docs/environments.md` that applies to its kind, such as a health
+  endpoint for a hosted app
+- whatever `setup` deferred: the `ci.yml` and `deploy.yml` workflows with the slop gate, the
+  package ecosystem in `dependabot.yml`, and the Commands and Conventions sections of the
+  AStack block in `AGENTS.md` (`../../docs/agents-md.md`)
 
-The walking skeleton is itself blocked by a user-work slice, **Connect hosting**. In it the
-user creates the host project for development and for production, and sets each deploy
-secret with the command for the repo's `ASTACK_SECRETS_MODE` (`../../docs/environments.md`).
-The slice body names every secret the deploy workflow will read, already written in that
-mode's form. It is assigned to the user and has a checklist body.
+Merging it delivers to development. Every other slice is blocked by it.
+
+The walking skeleton is itself blocked by a user-work slice, **Connect development**. In it the
+user sets up only what the development channel needs (a host project, a test track, or a
+registry token), and sets each secret with the command for the repo's `ASTACK_SECRETS_MODE`
+(`../../docs/environments.md`). A second user-work slice, **Connect production**, does the
+same for production. It blocks no slice, but `ship` won't release until it's closed, so
+production provisioning can wait until the first usable flow works. Each body names every
+secret the workflow will read, already written in that mode's form, and each is assigned to
+the user with a checklist body.
 
 When the spec has a Launch section, each item's work becomes a slice that also carries
 `astack:launch`, as `../../docs/launch.md` describes. Build work is a normal slice with a tier.
