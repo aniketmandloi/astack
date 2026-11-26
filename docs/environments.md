@@ -1,6 +1,8 @@
 # Environments and delivery
 
-The practices `setup` installs and `ship` relies on. Development and production are separate
+The practices `setup` installs and `ship` relies on, for the items the repo's footprint lets
+AStack manage (`docs/footprint.md`). A repo on the Light footprint keeps its own delivery,
+and none of this is applied there. Development and production are separate
 environments with separate config, secrets, and data; code moves from one to the other only
 through `main` and a release.
 
