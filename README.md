@@ -52,10 +52,18 @@ Skills orchestrate; four agents do the work, each pinned to a model and effort
 
 ## Guard
 
-In Claude Code, a PreToolUse hook (`hooks/guard.py`) blocks destructive commands, in every
-session: force-pushes without a lease, branch deletion, `rm -rf` outside the working
-directory, GitHub deletes, and dropping database tables. Run one yourself with
-`! <command>` if you mean it. Tests: `python3 -m unittest hooks/test_guard.py`.
+In Claude Code, a PreToolUse hook (`hooks/guard.py`) checks every Bash command the agent runs
+and denies these:
+- `git push` with `--force`, `-f`, or a `+` refspec; `--force-with-lease` to `main`
+- deleting a branch, locally (`git branch -d/-D/--delete`) or on the remote
+- `rm -rf` on a path outside the working directory, or on the directory itself
+- `gh repo delete`, `gh release delete`, `gh issue delete`, and `gh api` DELETE requests
+- `DROP TABLE/DATABASE/SCHEMA` or `TRUNCATE` in a command that runs a SQL client
+  (`psql`, `mysql`, `sqlite3`, and similar)
+
+It only sees shell commands. It can't see GitHub settings, an ORM's own CLI, or anything done
+outside the agent. Run a blocked command yourself with `! <command>` if you mean it. Tests:
+`python3 -m unittest hooks/test_guard.py`.
 
 ## Install
 

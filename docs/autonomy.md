@@ -39,11 +39,10 @@ don't block, and stops only when everything left waits on the user.
   `manual` and adds the question to the list. Each "Checks for you" comment joins the list
   too, and the change still merges to development, where the checks are run.
 
-In Claude Code, the AStack guard hook (`hooks/guard.py`) enforces the destructive part of this
-list, whatever the instructions say. It denies force-pushes without `--force-with-lease`,
-force-pushes to `main`, branch deletion, `rm -rf` outside the working directory, GitHub
-deletes, and dropping or truncating database objects. The user can still run any of these
-with `! <command>`. Codex runs plugin hooks only in manually installed desktop plugins, so
+In Claude Code, the AStack guard hook (`hooks/guard.py`) backs up the destructive part of
+this list for shell commands. The README lists exactly what it denies. It can't see GitHub
+settings, ORM migration CLIs, or anything outside the agent's shell, so the rules above still
+apply in full. The user can run any blocked command with `! <command>`. Codex runs plugin hooks only in manually installed desktop plugins, so
 there the instructions are the only guard.
 
 ## Recording
