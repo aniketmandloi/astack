@@ -107,8 +107,9 @@ refusal rather than retrying.
   `github-actions`.
 - `.github/ISSUE_TEMPLATE/bug.yml` and `spec.yml` matching the bodies in `docs/github.md`, and
   `.github/pull_request_template.md` matching its PR body.
-- `.env.example`, `.gitignore` entries for `.env*`, and `AGENTS.md` with the project's
-  commands, conventions, and a pointer to this workflow. `CLAUDE.md` contains just `@AGENTS.md`.
+- `.env.example`, and `.gitignore` entries for `.env*`.
+- The AStack block in `AGENTS.md` and the `@AGENTS.md` import in `CLAUDE.md`, as
+  `docs/agents-md.md` describes, merged into any existing files.
 
 ## Application baseline (built by the walking-skeleton slice)
 

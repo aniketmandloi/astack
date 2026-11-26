@@ -27,8 +27,10 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    existing repo may need a first PR that clears current hits). Each workflow's third-party
    actions must be pinned to a commit SHA the scout looked up. If the repo has no application
    yet, skip `ci.yml`, `deploy.yml`, and the slop gate, and leave `dependabot.yml` at
-   `github-actions` and the commands section of `AGENTS.md` empty of guesses; the
-   walking-skeleton slice adds those. Verify the YAML parses, push, and open a PR. Merging it is the user's call.
+   `github-actions`; the walking-skeleton slice adds those.
+   `AGENTS.md` and `CLAUDE.md` follow `../../docs/agents-md.md`: the scout reports the
+   project's conventions with file paths, and the builder writes only the AStack block. Before
+   moving any existing `CLAUDE.md` content, ask the user, as the table there says. Verify the YAML parses, push, and open a PR. Merging it is the user's call.
 5. **Settings.** After the user agrees, apply merge settings, the `development` and
    `production` environments with production's tag-only deployment policy and required
    reviewer, and the security settings. Report each refusal by plan as a gap, not an error.
