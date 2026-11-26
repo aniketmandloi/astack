@@ -15,8 +15,10 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    their plan can't enforce, and the fallback for each.
 2. **Learn the project.** Send a **scout** for: the language, framework, and package manager,
    the existing scripts for format, lint, typecheck, test, and build, existing workflows, and
-   the deploy host. A new project gets its stack and host from its spec or map. If neither
-   says, use the **grill** skill on just those questions.
+   the deploy host. A new project gets its stack and host from its spec or map. If the repo
+   has no application and no spec or map says, don't ask: the stack is decided in **chart**,
+   and the walking-skeleton slice writes the stack-specific files. Otherwise, if nothing says,
+   use the **grill** skill on just those questions.
 3. **Labels.** Have the **clerk** create every label in `../../docs/github.md` with
    `gh label create <name> --color <hex> --description "<meaning>" --force`.
 4. **Files.** On branch `astack-setup`, brief the **builder** agent to write the files listed
@@ -24,8 +26,9 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    `../../docs/slop.md` (ask the user before adding a dev dependency the gate needs; an
    existing repo may need a first PR that clears current hits). Each workflow's third-party
    actions must be pinned to a commit SHA the scout looked up. If the repo has no application
-   yet, write everything except `ci.yml` and `deploy.yml`; the walking-skeleton slice adds
-   those. Verify the YAML parses, push, and open a PR. Merging it is the user's call.
+   yet, skip `ci.yml`, `deploy.yml`, and the slop gate, and leave `dependabot.yml` at
+   `github-actions` and the commands section of `AGENTS.md` empty of guesses; the
+   walking-skeleton slice adds those. Verify the YAML parses, push, and open a PR. Merging it is the user's call.
 5. **Settings.** After the user agrees, apply merge settings, the `development` and
    `production` environments with production's tag-only deployment policy and required
    reviewer, and the security settings. Report each refusal by plan as a gap, not an error.

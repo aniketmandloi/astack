@@ -20,8 +20,9 @@ Turn an `astack:spec` issue into buildable work: `astack:slice` sub-issues with 
 
 For a new project, the first slice is the **walking skeleton**: scaffold the app with the
 framework's official generator, add the health endpoint, one passing test, and the baseline in
-`../../docs/environments.md`, plus the `ci.yml` and `deploy.yml` workflows described there,
-so that merging it deploys to development. Every other slice is blocked by it.
+`../../docs/environments.md`, plus whatever `setup` deferred: the `ci.yml` and `deploy.yml`
+workflows with the slop gate, the package ecosystem in `dependabot.yml`, and the commands in
+`AGENTS.md`, so that merging it deploys to development. Every other slice is blocked by it.
 
 ## Tier
 
