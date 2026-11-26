@@ -94,6 +94,7 @@ reason"), and its work, split into build work and user work>
 
 ```markdown
 Part of <spec title and link>
+Plan item: S<n>
 
 ## What to build
 <one vertical slice: thin, end to end through every layer it touches, demoable>

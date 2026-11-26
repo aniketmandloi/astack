@@ -37,7 +37,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | A bug, error, or regression | **fix** |
 | A refactor or cleanup that keeps behaviour the same | **build**, in refactor mode |
 | A map with open tickets | **chart** on that map |
-| A spec with no Slice plan, or one with unticked lines | **slice** |
+| A spec with no Slice plan, or one with unticked items | **slice** |
 | An open PR awaiting review, or "review this" | **review** |
 | A PR with red checks, conflicts, or unanswered comments | **babysit** |
 | "What's next?" or no request | **build** on the next startable slice; otherwise the next frontier ticket of an open map |

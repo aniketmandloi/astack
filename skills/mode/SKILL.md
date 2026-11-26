@@ -70,7 +70,7 @@ autonomy overrides.
    limit doesn't apply in a run, but reload the map from GitHub before each ticket. Research
    tickets go to scouts in parallel.
 3. **A finished map with no spec**: **spec**.
-4. **A spec whose Slice plan is missing or has unticked lines**: **slice**.
+4. **A spec whose Slice plan is missing or has unticked items**: **slice**.
 5. **Scope bugs**: **fix**. Its PR goes through item 1 on the next turn.
 6. **The next startable Scope slice**: **build** it. Its PR goes through item 1.
 

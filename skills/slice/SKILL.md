@@ -75,18 +75,29 @@ Label each slice for routing (`../../docs/routing.md`):
 3. Draft the slices in build order: title, one-line what, acceptance criteria, tier, and what
    each is blocked by. Present the list to the user and apply their changes before creating
    anything.
-4. **Post the plan** as a comment on the spec headed `## Slice plan`. Each slice gets one
-   line: `- [ ] <title>: <one-line what> (blocked by: <titles>)`. This comment records
-   progress.
+4. **Post the plan** as a comment on the spec headed `## Slice plan`. It holds everything
+   approved, so a fresh session can recreate any slice from it alone. Each slice gets a stable
+   id, `S1`, `S2`, and so on:
+
+   ```markdown
+   - [ ] **S2** <title> · tier:hard · blocked by: S1
+     - What: <one line>
+     - Criteria: <criterion>; <criterion>
+   ```
+
+   User-work slices list their checklist instead of criteria, and their labels
+   (`astack:release`) instead of a tier. The comment records progress.
 5. Create the slices with the **clerk** agent: each issue labelled `astack:slice`,
    `status:ready`, and its tier; then, in a second pass, link each as a sub-issue of the spec
    and wire its blocked-by edges. Give the clerk the exact bodies and the operations from
-   `../../docs/github.md`. Tick a plan line, adding the issue link, only once that slice is
+   `../../docs/github.md`. Tick a plan item, adding the issue link, only once that slice is
    created, linked, and wired.
 6. Report the slices by title with links, and which are startable now. Offer the **build**
    skill on the first one.
 
-**Resuming**: if the spec already has a Slice plan with unticked lines, skip drafting. For
-each unticked line, find any issue that was already created (by title, among the spec's
-sub-issues and open `astack:slice` issues). Finish whatever it's missing (creation, link, or
-edges), then tick the line. A spec is fully sliced only when every line of its plan is ticked.
+**Resuming**: if the spec already has a Slice plan with unticked items, skip drafting. For
+each unticked item, look for an issue that was already created. It counts only if its body
+starts with this spec's `Part of` link and carries the same `Plan item: S<n>` line. Titles
+alone don't count, because another spec can have a slice with the same title. Finish
+whatever it's missing (creation from the plan's recorded fields, the sub-issue link, or the
+edges), then tick the item. A spec is fully sliced only when every item of its plan is ticked.
