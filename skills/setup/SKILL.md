@@ -11,8 +11,12 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
 `../../docs/routing.md`. Everything is idempotent: check what exists before creating it.
 
 1. **Confirm the target.** `gh repo view --json nameWithOwner,visibility,viewerPermission` and
-   `gh api user --jq .plan.name`. You need admin permission. Tell the user up front which gates
-   their plan can't enforce, and the fallback for each.
+   `gh api user --jq .plan.name`. You need admin permission. A `null` plan means the token
+   lacks the `read:user` scope: ask the user to run `! gh auth refresh -s read:user`, or
+   continue and treat each refusal as a plan gap. Tell the user up front which gates their plan
+   can't enforce and the fallback for each. A private repo on the free plan gets no
+   environments: offer its three options from `../../docs/environments.md` and let the user
+   choose.
 2. **Learn the project.** Send a **scout** for: the language, framework, and package manager,
    the existing scripts for format, lint, typecheck, test, and build, existing workflows, and
    the deploy host. A new project gets its stack and host from its spec or map. If the repo

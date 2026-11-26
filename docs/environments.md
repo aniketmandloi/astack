@@ -56,6 +56,14 @@ gh api -X POST repos/{owner}/{repo}/environments/production/deployment-branch-po
 `<user-id>` is `gh api user --jq .id`. Without required reviewers, the fallback gate is that
 production deploys only from a release, and only `ship` (user-invoked) creates releases.
 
+**Private repo on the free plan**: no environments or environment secrets exist. The user
+chooses one of three options:
+1. Make the repo public, which brings environments and rulesets on the free plan.
+2. Upgrade to GitHub Pro.
+3. Accept weaker isolation. Deploy jobs read repository secrets prefixed `DEV_` and `PROD_`,
+   and the production job runs only on a release. Any workflow can read a production secret,
+   so state that in the setup report and in `AGENTS.md`.
+
 **Ruleset on the default branch** (create after the CI workflow has run once, so the `ci`
 check exists):
 ```bash
