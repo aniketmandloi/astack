@@ -48,4 +48,4 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    ruleset. When there's no CI yet, say it waits for the walking skeleton and that the
    **ship** skill re-checks it.
 8. **Report** a table: each item applied, skipped as already present, or not available on this
-   plan. Then point to the next step: **chart** for a new project, **build** for an existing one.
+   plan, including the effective branch-retention setting. Then point to the next step: **chart** for a new project, **build** for an existing one.

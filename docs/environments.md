@@ -40,8 +40,12 @@ Enterprise. When a gate isn't available, say so and use the fallback listed.
 **Merge settings**:
 ```bash
 gh api -X PATCH repos/{owner}/{repo} -F allow_squash_merge=true -F allow_merge_commit=false \
-  -F allow_rebase_merge=false -F delete_branch_on_merge=true
+  -F allow_rebase_merge=false -F delete_branch_on_merge=false
 ```
+Merged branches are kept: deleting a branch is the user's call, so GitHub's automatic
+deletion stays off. The setup report shows the repo's effective `delete_branch_on_merge`
+(`gh api repos/{owner}/{repo} --jq .delete_branch_on_merge`), and on an existing repo it says
+so if the setting was on before.
 
 **Environments**:
 ```bash
