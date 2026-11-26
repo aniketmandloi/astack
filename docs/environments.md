@@ -4,6 +4,22 @@ The practices `setup` installs and `ship` relies on. Development and production 
 environments with separate config, secrets, and data; code moves from one to the other only
 through `main` and a release.
 
+## Artifact kinds
+
+What reaches a user decides what "deploy" means. `chart` settles it for every new project:
+which artifact the user gets, and how to verify that exact artifact.
+
+| Artifact | Development channel (every merge to `main`) | Production channel (a release tag) | Smoke check |
+|---|---|---|---|
+| Hosted web app or API | deploy to the development environment | deploy to production | health endpoint, then end-to-end smoke tests against the URL |
+| Mobile app | an internal test build, on the store's test track | a store release | install the build on a simulator or device and run the main flow |
+| CLI or library | a prerelease package or a build artifact | a publish to the registry, or binaries attached to the release | install the published artifact fresh and run its main command or import |
+| Desktop or local-first app | a build artifact | a signed release | install it, launch it, and run the main flow |
+
+The rest of this doc is written for hosted apps. For the other kinds, the same rules hold,
+with "deploy" meaning "publish to the channel above". The health endpoint and deployed URL
+become the smoke check in the table.
+
 ## Flow
 
 ```

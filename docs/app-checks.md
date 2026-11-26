@@ -4,8 +4,9 @@ Two kinds of checking prove a change works in the running app.
 
 - **CI tests** run on GitHub's machines and cost nothing locally, so they are always on. They
   are the end-to-end tests the builder writes for each user-facing slice, using the harness
-  the walking skeleton sets up, plus the smoke test the deploy workflow runs against the
-  deployed URL after every deploy.
+  the walking skeleton sets up, plus the smoke test the deploy workflow runs after every
+  deploy against the delivered artifact. For a hosted app that's the deployed URL; other
+  artifact kinds are listed in `docs/environments.md`.
 - **Hands-on checks** mean someone uses the app: clicks through the flow, tries the edge
   cases, and looks at the layout. An agent can only do this by driving a browser or the
   computer locally, which takes a lot of memory. So hands-on checks are off unless the user
