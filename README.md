@@ -17,7 +17,8 @@ idea ──▶ chart ──▶ (decision tickets) ──▶ spec ──▶ slice
 ```
 
 Start anywhere with **`/astack:astack`** (Codex: `$astack`). It reads the repo's GitHub state
-and routes to the right step.
+and routes to the right step. Or hand over the whole thing with **`/astack:mode <goal>`**,
+which runs every step itself under the rules in [docs/autonomy.md](docs/autonomy.md).
 
 | Skill | Does |
 |---|---|
@@ -31,6 +32,7 @@ and routes to the right step.
 | `review` | Reviews a PR against its issue in a fresh context and posts the findings |
 | `setup` | One-time repo setup: labels, templates, CI/CD, dev and prod environments, rules *(you start it)* |
 | `ship` | Cuts a release and watches the gated production deploy *(you start it)* |
+| `mode` | Autonomous: drives a goal through every stage to development on its own, records each decision on GitHub, and pauses only for production, money, secrets, destructive actions, and your calls *(you start it)* |
 
 ## Model routing
 
