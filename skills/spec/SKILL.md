@@ -13,7 +13,9 @@ labelled `astack:spec` with the body in `../../docs/github.md`.
    link (read with a **scout** agent when there are many). From an issue: its body and comments.
    From the conversation: what the user has confirmed.
 2. **Fill the facts** the spec needs that nobody has stated (current code structure, the
-   modules affected, API limits) with a **scout** agent rather than guessing.
+   modules affected, API limits) with a **scout** agent rather than guessing. Have the scout
+   also read the earlier `astack:spec` issues and closed decision tickets that touch the same
+   modules or data. The new spec follows their decisions, or names the one it reverses and why.
 3. **Find what's still open.** Every section must be answerable from the decisions. When one
    isn't, use the **grill** skill on just those questions. **Open questions** must be empty
    before the spec is filed.
