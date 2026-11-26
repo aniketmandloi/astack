@@ -89,10 +89,21 @@ gh repo create my-app --private --clone && cd my-app
 /astack:setup
 ```
 
-Setup creates the labels, issue and PR templates, and the `AGENTS.md` rules (imported by
-`CLAUDE.md`). It creates separate `development` and `production` environments, branch rules,
-and security settings. It opens a setup PR for me to merge, and on an existing repo it fills in
-only what's missing.
+Setup first asks how much of my GitHub setup AStack may change, then shows me a preview of
+every change before it applies anything:
+
+- **Light**: only AStack's labels. Workflows, settings, rules, and files stay exactly as they
+  are. This is what I pick on a project that's already built, where I only want AStack for
+  features.
+- **Custom**: I pick the pieces: the `AGENTS.md` rules, templates, CI with the slop gate,
+  deploy with dev and prod environments, rebase merges, branch rules, and security.
+- **Full**: everything. This is what I pick for a new repo.
+
+It never re-colours a label I already have and never edits an existing workflow. It also
+records the previous value of every setting it changes, so I can put it back. I can rerun it
+later to add more. Whatever I leave to the repo, the other skills work with what's already
+there: its own checks, its merge method, and its deploy workflow
+([docs/footprint.md](docs/footprint.md)).
 
 ### Starting a new project
 
@@ -241,12 +252,15 @@ these, I run it myself with `! <command>`. Tests: `python3 -m unittest hooks/tes
 - **Labels**: `astack:map`, `astack:decision`, `astack:spec`, `astack:slice`, `astack:bug`,
   `astack:launch`, `astack:release`, `astack:retro`, `astack:run`, plus `status:*`, `tier:*`,
   and `decision:*` ([docs/github.md](docs/github.md)).
-- **Repo variables**: `ASTACK_SETUP` (whether setup finished), `ASTACK_SECRETS_MODE` (how
-  deploy secrets are stored), and `ASTACK_APP_CHECKS` (who runs hands-on checks).
+- **Repo variables**: `ASTACK_SETUP` (whether setup finished), `ASTACK_MANAGES` (which parts
+  of the GitHub setup AStack may change), `ASTACK_SECRETS_MODE` (how deploy secrets are
+  stored), and `ASTACK_APP_CHECKS` (who runs hands-on checks).
 - **Everything else**: issue bodies, comments, and PRs.
 
 ## Docs
 
+- [docs/footprint.md](docs/footprint.md): what setup may change (Light, Custom, Full), and how
+  the skills work with a repo's own setup
 - [docs/github.md](docs/github.md): labels, issue bodies, `gh` operations, branches, PRs,
   merges, and deploy tracking
 - [docs/environments.md](docs/environments.md): development vs production, artifact kinds,
