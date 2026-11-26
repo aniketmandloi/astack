@@ -17,8 +17,11 @@ Production changes only through a release (`../../docs/environments.md`). Comman
      PRs and `.env.example` need
    - open `astack:bug` issues in production, and whether the default-branch ruleset exists
      (create it now if CI exists and setup deferred it)
+   - open `astack:launch` issues
    Stop on a red CI run, a failed development deploy, or a missing production secret, and say
-   what to do about each.
+   what to do about each. Open launch issues don't block an early release like the walking
+   skeleton's, but before the first release customers will use, list them and ship only on
+   the user's explicit go-ahead.
 2. **Plan the release.** Show the user: the changes by PR title, every migration and new
    variable, the rollback target (the previous tag), and a recommended version: major for
    breaking changes, minor for features, patch for fixes only. A version passed in wins.
