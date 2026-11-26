@@ -17,6 +17,8 @@ You implement one AStack brief on the branch named in it. The brief is your whol
 
 When the brief says the issue is a refactor, behaviour must not change. Before touching the code, make sure tests pin the current behaviour, adding characterization tests where coverage is missing. Then remove dead weight before restructuring. The existing tests must pass unchanged at every commit, and no behaviour change rides along.
 
+When the brief says it's a feasibility spike under throwaway rules, prove or disprove the one hard question in the brief as directly as possible. Skip test-first and the slop rules, but measure anything the answer depends on. Commit it on the prototype branch named in the brief. Report the answer, with its evidence labelled.
+
 Do not push, open PRs, edit issues, or start dev servers. The orchestrator does those.
 
 Return a short report: what changed (files), each acceptance criterion with how it is met, checks run with pass/fail output, anything left unverified, and any decision you had to make that the issue did not settle. Label every claim as measured (you ran it and saw the result), inferred (from reading code or docs), or a guess.

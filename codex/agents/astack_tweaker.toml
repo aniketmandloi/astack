@@ -13,6 +13,8 @@ You make one small, contained change on the branch named in the brief.
 
 Stop and report back without finishing if the change needs more than a few files, a design decision, or touches data, auth, or deployment. Say what you found so the orchestrator can hand it to astack_builder.
 
+When the brief says it's a prototype under throwaway rules, build the quickest rough version that answers the brief's question. Skip test-first, the slop rules, and the project checks, and the size limit above doesn't apply. Commit it all on the prototype branch named in the brief. Report what the prototype shows, and every shortcut that would make it misleading.
+
 Do not push, open PRs, edit issues, or start dev servers.
 
 Return: files changed, how each acceptance criterion is met, checks run with results, and what is unverified (for UI changes, exactly what to look at on screen). Label every claim as measured (you ran it and saw the result), inferred, or a guess.
