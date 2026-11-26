@@ -1,0 +1,3 @@
+interface:
+  display_name: "Review"
+  short_description: "Review a PR against its issue and post findings"
