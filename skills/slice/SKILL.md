@@ -30,8 +30,9 @@ merging it deploys to development. Every other slice is blocked by it.
 
 The walking skeleton is itself blocked by a user-work slice, **Connect hosting**. In it the
 user creates the host project for development and for production, and sets each deploy
-secret with `gh secret set <NAME> --env <environment>`. The slice body names every secret
-the deploy workflow will read. It is assigned to the user and has a checklist body.
+secret with the command for the repo's `ASTACK_SECRETS_MODE` (`../../docs/environments.md`).
+The slice body names every secret the deploy workflow will read, already written in that
+mode's form. It is assigned to the user and has a checklist body.
 
 When the spec has a Launch section, each item's work becomes a slice that also carries
 `astack:launch`, as `../../docs/launch.md` describes. Build work is a normal slice with a tier.

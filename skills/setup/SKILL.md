@@ -16,7 +16,8 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    continue and treat each refusal as a plan gap. Tell the user up front which gates their plan
    can't enforce and the fallback for each. A private repo on the free plan gets no
    environments: offer its three options from `../../docs/environments.md` and let the user
-   choose.
+   choose. Record the result as `ASTACK_SECRETS_MODE` (`environments` or `prefixed`), and
+   write every later step and file to match it.
 2. **Learn the project.** Send a **scout** for: the language, framework, and package manager,
    the existing scripts for format, lint, typecheck, test, and build, existing workflows, and
    the deploy host. A new project gets its stack and host from its spec or map. If the repo
@@ -42,8 +43,9 @@ Installs the GitHub side of AStack in the current repo. Practices and exact comm
    `production` environments with production's tag-only deployment policy and required
    reviewer, and the security settings. Report each refusal by plan as a gap, not an error.
 6. **Secrets.** List every variable each environment needs, from `.env.example` and the spec.
-   Tell the user to set each value themselves with `gh secret set <NAME> --env <environment>`
-   (prefix with `!` to run it in this session). Never ask for a secret value in chat.
+   Tell the user to set each value themselves with the command for the repo's
+   `ASTACK_SECRETS_MODE` (`../../docs/environments.md`), prefixed with `!` to run it in this
+   session. Never ask for a secret value in chat.
 7. **Branch ruleset.** Once CI has run and the `ci` check exists, create the default-branch
    ruleset. When there's no CI yet, say it waits for the walking skeleton and that the
    **ship** skill re-checks it.

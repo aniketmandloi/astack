@@ -26,7 +26,8 @@ issue branch ──PR + CI──▶ main ──push──▶ deploy: development
   except that file.
 - Deploy-time secrets are GitHub **environment secrets** (`gh secret set <NAME> --env
   development|production`), never repository secrets, so a development job cannot read a
-  production secret.
+  production secret. The one exception is the `prefixed` secrets mode, for plans without
+  environments (see "Secrets mode" below).
 - Each environment has its own resources: database, storage buckets, API keys, OAuth apps,
   webhooks. Never copy production data into development.
 - Prefer OIDC federation to the cloud host over long-lived deploy keys where the host supports it.
@@ -68,6 +69,18 @@ chooses one of three options:
 3. Accept weaker isolation. Deploy jobs read repository secrets prefixed `DEV_` and `PROD_`,
    and the production job runs only on a release. Any workflow can read a production secret,
    so state that in the setup report and in `AGENTS.md`.
+
+**Secrets mode**: `setup` records the outcome as the repo variable `ASTACK_SECRETS_MODE`
+(`gh variable set ASTACK_SECRETS_MODE --body environments|prefixed`). Every step that touches
+deploy secrets reads it, so hosting instructions, workflows, release checks, and rollback
+agree:
+
+| | `environments` | `prefixed` |
+|---|---|---|
+| Set a secret | `gh secret set <NAME> --env development` (or `production`) | `gh secret set DEV_<NAME>` / `gh secret set PROD_<NAME>` |
+| List production secrets | `gh secret list --env production` | `gh secret list`, names starting `PROD_` |
+| Deploy jobs | `environment: development` / `production` | no `environment:` key; each job maps `DEV_<NAME>` or `PROD_<NAME>` to `<NAME>` in its `env:` |
+| Production gate | tag-only policy, plus a reviewer where the plan allows | the job's own `refs/tags/v` check, and only `ship` creates releases |
 
 **Ruleset on the default branch** (create after the CI workflow has run once, so the `ci`
 check exists):

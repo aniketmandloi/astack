@@ -13,8 +13,8 @@ Production changes only through a release (`../../docs/environments.md`). Comman
 1. **Preflight.** Send a **scout** to gather, read-only:
    - the head of `main`, and whether its `ci` run passed and its development deploy succeeded
    - the last release tag, and the PRs merged since it, with their Environments sections
-   - production secret names (`gh secret list --env production`) against the variables those
-     PRs and `.env.example` need
+   - production secret names, listed the way the repo's `ASTACK_SECRETS_MODE` says
+     (`../../docs/environments.md`), against the variables those PRs and `.env.example` need
    - open `astack:bug` issues in production, and whether the default-branch ruleset exists
      (create it now if CI exists and setup deferred it)
    - open `astack:launch` issues
