@@ -1,8 +1,9 @@
 # Slop
 
 Slop is anything in a change that a careful senior engineer would delete in review. Nothing on
-this list ships. Agents that write code get this file in their brief. A deslop pass checks
-every diff against it before a PR opens, and `review` treats any hit as "changes needed".
+this list ships. Agents that write code get this file in their brief. Before a PR opens, a
+deslop pass checks every diff except small contained ones against it. `review` checks every
+PR against it and treats any hit as "changes needed".
 CI enforces the mechanical rules (see "CI gate" below).
 
 ## Code
