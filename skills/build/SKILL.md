@@ -59,6 +59,11 @@ branch too.
 
 ## 5. Deslop
 
+A `tier:small` change skips this step: the **review** skill's slop check covers it in the
+same independent pass, so a two-line fix gets one review, not two. Run this step for
+`tier:hard`, and for any change that touches behaviour across modules, data, auth, or
+deployment, whatever its label.
+
 Brief a fresh **builder** agent for a deslop pass. It didn't write the code, so it reads the
 diff cold. Give it the branch, the diff against `main`, and the full text of
 `../../docs/slop.md`. Send every finding back to the tier that wrote the code, then run the
