@@ -1,0 +1,37 @@
+---
+name: setup
+description: Set up a GitHub repository for AStack once - labels, issue and PR templates, AGENTS.md, CI and deploy workflows, separate development and production environments, branch rules, and security settings. Use when starting a project or adopting AStack in an existing repo.
+disable-model-invocation: true
+---
+
+# Setup
+
+Installs the GitHub side of AStack in the current repo. Practices and exact commands:
+`../../docs/environments.md`. Labels and bodies: `../../docs/github.md`. Routing:
+`../../docs/routing.md`. Everything is idempotent: check what exists before creating it.
+
+1. **Confirm the target.** `gh repo view --json nameWithOwner,visibility,viewerPermission` and
+   `gh api user --jq .plan.name`. You need admin permission. Tell the user up front which gates
+   their plan can't enforce, and the fallback for each.
+2. **Learn the project.** Send a **scout** for: the language, framework, and package manager,
+   the existing scripts for format, lint, typecheck, test, and build, existing workflows, and
+   the deploy host. A new project gets its stack and host from its spec or map. If neither
+   says, use the **grill** skill on just those questions.
+3. **Labels.** Have the **clerk** create every label in `../../docs/github.md` with
+   `gh label create <name> --color <hex> --description "<meaning>" --force`.
+4. **Files.** On branch `astack-setup`, brief the **builder** agent to write the files listed
+   under "Files `setup` writes", with the commands from step 2. Each workflow's third-party
+   actions must be pinned to a commit SHA the scout looked up. If the repo has no application
+   yet, write everything except `ci.yml` and `deploy.yml`; the walking-skeleton slice adds
+   those. Verify the YAML parses, push, and open a PR. Merging it is the user's call.
+5. **Settings.** After the user agrees, apply merge settings, the `development` and
+   `production` environments with production's tag-only deployment policy and required
+   reviewer, and the security settings. Report each refusal by plan as a gap, not an error.
+6. **Secrets.** List every variable each environment needs, from `.env.example` and the spec.
+   Tell the user to set each value themselves with `gh secret set <NAME> --env <environment>`
+   (prefix with `!` to run it in this session). Never ask for a secret value in chat.
+7. **Branch ruleset.** Once CI has run and the `ci` check exists, create the default-branch
+   ruleset. When there's no CI yet, say it waits for the walking skeleton and that the
+   **ship** skill re-checks it.
+8. **Report** a table: each item applied, skipped as already present, or not available on this
+   plan. Then point to the next step: **chart** for a new project, **build** for an existing one.

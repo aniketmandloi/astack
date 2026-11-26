@@ -1,0 +1,5 @@
+interface:
+  display_name: "Setup"
+  short_description: "Install AStack labels, environments, CI/CD, and rules"
+policy:
+  allow_implicit_invocation: false
