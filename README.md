@@ -46,7 +46,7 @@ Skills orchestrate; four agents do the work, each pinned to a model and effort
 | Agent | Work | Claude Code | Codex |
 |---|---|---|---|
 | builder | Difficult code, debugging, reviews | Opus 5.5, high | gpt-6.2-sol, high |
-| tweaker | Small contained edits | Sonnet 5.5, high | gpt-6.2-sol, high |
+| tweaker | Small contained edits | Opus 5.5, medium | gpt-6.2-sol, high |
 | scout | Search, `gh` reads, docs lookups | Haiku 5.5, high | gpt-6.2-sol, low |
 | clerk | Bulk, fully specified `gh` writes | Haiku 5.5, high | gpt-6.2-sol, low |
 

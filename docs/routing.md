@@ -8,7 +8,7 @@ applies when the user types `/name`; an agent's `model` and `effort` apply every
 | Agent | Work | Claude Code | Codex |
 |---|---|---|---|
 | **builder** | Difficult code: features, multi-file changes, architecture, migrations, security, root-cause debugging, reviews | `astack:builder`: `claude-opus-5-5`, effort `high` | `astack_builder`: `gpt-6.2-sol`, `high` |
-| **tweaker** | Small contained edits: copy, style, small UI, renames, config bumps | `astack:tweaker`: `claude-sonnet-5-5`, effort `high` | `astack_tweaker`: `gpt-6.2-sol`, `high` |
+| **tweaker** | Small contained edits: copy, style, small UI, renames, config bumps | `astack:tweaker`: `claude-opus-5-5`, effort `medium` | `astack_tweaker`: `gpt-6.2-sol`, `high` |
 | **scout** | Read-only fact finding: code search, `gh` reads, docs, versions | `astack:scout`: `claude-haiku-5-5`, effort `high` | `astack_scout`: `gpt-6.2-sol`, `low` |
 | **clerk** | Mechanical, fully specified `gh` writes in bulk | `astack:clerk`: `claude-haiku-5-5`, effort `high` | `astack_clerk`: `gpt-6.2-sol`, `low` |
 
