@@ -1,6 +1,6 @@
 ---
 name: build
-description: Build one GitHub issue end to end - claim it, branch, have the right-tier agent implement it test-first, verify, deslop, push, and open a PR that closes it. Use for any feature, slice, UI change, or small tweak. Takes an issue number, a plain description of a small change (it files the issue first), or nothing (it picks the next ready issue).
+description: Build one GitHub issue end to end - claim it, branch, have the right-tier agent implement it test-first, verify, deslop, push, and open a PR that closes it. Use for any feature, slice, UI change, small tweak, or behaviour-preserving refactor. Takes an issue number, a plain description of a small change (it files the issue first), or nothing (it picks the next ready issue).
 argument-hint: "[issue | description]"
 ---
 
@@ -28,7 +28,14 @@ Never build on `main`.
 ## 3. Implement through the right agent
 
 Send `tier:hard` to the **builder** agent and `tier:small` to the **tweaker** agent; when
-unlabelled, judge by the rules in `../../docs/routing.md` and add the label. Use a **scout**
+unlabelled, judge by the rules in `../../docs/routing.md` and add the label.
+
+**Refactor mode**: when the issue changes structure without changing behaviour (rename,
+extract, move, dedupe, simplify, replace an internal API), say so in the brief and send it to
+the builder whatever the tier. Its acceptance criteria are "behaviour unchanged, shown by
+tests" plus the structural target. In verify, the existing tests must pass without edits.
+Any test change needs a reason in the PR, and any behaviour change is split out into its
+own issue. Use a **scout**
 first if the brief needs facts about the code that you don't have.
 
 The brief opens with the goal in one sentence, then holds: the repo path and branch, the

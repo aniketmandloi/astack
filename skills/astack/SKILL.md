@@ -29,6 +29,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | A feature with open decisions that fits one session | **grill** → **spec** → **slice** |
 | A clear feature, UI change, or tweak that fits one session | **build** (it files the issue first) |
 | A bug, error, or regression | **fix** |
+| A refactor or cleanup that keeps behaviour the same | **build**, in refactor mode |
 | A map with open tickets | **chart** on that map |
 | A spec with no slices | **slice** |
 | An open PR awaiting review, or "review this" | **review** |
