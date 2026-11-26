@@ -150,8 +150,8 @@ blocker and no assignee, oldest first.
   is met, checks run with results, a Deslop section (the number of rounds, and each finding
   by slop rule number), environment impact, and what the user must check by hand.
   Every claim is labelled measured (run and seen), inferred, or a guess.
-- When the PR opens, move the issue to `status:in-review`. Merge is squash-only and needs the
-  user's go-ahead.
+- When the PR opens, move the issue to `status:in-review`. Merging is rebase-only, so every
+  commit on the branch lands on `main`, and it needs the user's go-ahead.
 
 ## Commits, verdicts, and deploys
 
@@ -160,10 +160,11 @@ Every verdict and check belongs to one exact commit.
 - **Review**: the review comment opens with `Reviewed at <head-sha>`, from
   `gh pr view <pr> --json headRefOid --jq .headRefOid`. The verdict covers only that commit.
   Any later push needs a review of the new commits before the PR is merge-ready again.
-- **Merge**: `gh pr merge <pr> --squash --match-head-commit <reviewed-sha>`. GitHub refuses it
+- **Merge**: `gh pr merge <pr> --rebase --match-head-commit <reviewed-sha>`. GitHub refuses it
   if the head moved since the review.
 - **Deploy**: after merging, take the merge commit
-  (`gh pr view <pr> --json mergeCommit --jq .mergeCommit.oid`). Find its own deploy run
+  (`gh pr view <pr> --json mergeCommit --jq .mergeCommit.oid`). For a rebase merge that's
+  the last rebased commit, the one the push to `main` deployed. Find its own deploy run
   (`gh run list --workflow deploy.yml --commit <merge-sha> --json databaseId,status,conclusion`)
   and watch that run (`gh run watch <id>`). The latest run on `main` may belong to another merge.
 - Throwaway prototype branches are `prototype/<n>-<slug>`: pushed, linked from their ticket,

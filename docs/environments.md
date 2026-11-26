@@ -27,7 +27,8 @@ issue branch ──PR + CI──▶ main ──push──▶ deploy: development
                                  └─release vX.Y.Z──▶ deploy: production (gated)
 ```
 
-- Trunk-based: `main` is always deployable; short-lived branch per issue; squash merge.
+- Trunk-based: `main` is always deployable; short-lived branch per issue; rebase merge, which
+  keeps every commit.
 - Every merge to `main` deploys to **development**. A published GitHub release deploys that tag
   to **production**. The rollback is a manual run of the deploy workflow dispatched on an
   older release tag.
@@ -57,9 +58,12 @@ Enterprise. When a gate isn't available, say so and use the fallback listed.
 
 **Merge settings**:
 ```bash
-gh api -X PATCH repos/{owner}/{repo} -F allow_squash_merge=true -F allow_merge_commit=false \
-  -F allow_rebase_merge=false -F delete_branch_on_merge=false
+gh api -X PATCH repos/{owner}/{repo} -F allow_rebase_merge=true -F allow_squash_merge=false \
+  -F allow_merge_commit=false -F delete_branch_on_merge=false
 ```
+PRs are rebase-merged. Every commit lands on `main` as its own commit, under its author, and
+history stays linear for the ruleset. So each commit has to stand on its own: one verified
+logical step, with a message that says why.
 Merged branches are kept: deleting a branch is the user's call, so GitHub's automatic
 deletion stays off. The setup report shows the repo's effective `delete_branch_on_merge`
 (`gh api repos/{owner}/{repo} --jq .delete_branch_on_merge`), and on an existing repo it says

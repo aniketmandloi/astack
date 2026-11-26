@@ -51,7 +51,8 @@ This repo uses the AStack workflow: plans, specs, and work items live in GitHub 
 
 - Every change starts from a GitHub issue. One branch per issue, `<n>-<slug>`, from an
   up-to-date `main`.
-- Never commit to or push `main`. PRs start with `Closes #<n>` and squash-merge after CI passes.
+- Never commit to or push `main`. PRs start with `Closes #<n>` and rebase-merge after CI
+  passes, so every commit lands on `main`.
 - Commit each verified logical step separately.
 - Deferred work becomes a GitHub issue, never a TODO.
 

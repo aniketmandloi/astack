@@ -12,7 +12,7 @@ is recorded in the run issue.
 - **Prototype tickets**: judges the prototype against what can be observed. On taste alone,
   takes the conventional choice for the product's kind.
 - **Drafts**: files specs, slice lists, and acceptance criteria without waiting for approval.
-- **Merging**: squash-merges a PR into `main` when, at its current head commit, the `ci` check
+- **Merging**: rebase-merges a PR into `main` when, at its current head commit, the `ci` check
   is green, the deslop pass is clean (for a `tier:small` change, which skips that pass, the
   review's slop check stands in), and the review verdict is "ready". The merge is pinned to
   that commit with `--match-head-commit` (`docs/github.md`). This deploys to development only.
