@@ -52,8 +52,15 @@ an interruption resumes where it stopped.
 7. **Branch ruleset.** Once CI has run and the `ci` check exists, create the default-branch
    ruleset. When there's no CI yet, say it waits for the walking skeleton and that the
    **ship** skill re-checks it.
-8. **Mark it done.** Once steps 3 to 6 are in place, meaning the setup PR is open or merged,
-   run `gh variable set ASTACK_SETUP --body complete`. Other skills treat the repo as set up
-   only when this variable reads `complete`. Labels alone mean an interrupted setup.
+8. **Record the state** in `ASTACK_SETUP`. Other skills treat the repo as set up only when it
+   reads `complete`. Labels alone mean an interrupted setup.
+   - Steps 3 to 6 done and the setup PR open: `gh variable set ASTACK_SETUP --body
+     awaiting-merge`. Builds would branch from a `main` that lacks the setup files, so the
+     repo isn't ready yet.
+   - The setup PR merged, and the expected files on the default branch
+     (`gh api repos/{owner}/{repo}/contents/<path>` for `AGENTS.md`, the templates, and the
+     workflows that were written): set it to `complete`.
+   - The setup PR closed without merging: set nothing, and tell the user to rerun
+     `/astack:setup`.
 9. **Report** a table: each item applied, skipped as already present, or not available on this
    plan, including the effective branch-retention setting. Then point to the next step: **chart** for a new project, **build** for an existing one.
