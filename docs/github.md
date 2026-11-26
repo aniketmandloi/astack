@@ -152,6 +152,8 @@ blocker and no assignee, oldest first.
   Every claim is labelled measured (run and seen), inferred, or a guess.
 - When the PR opens, move the issue to `status:in-review`. Merging is rebase-only, so every
   commit on the branch lands on `main`, and it needs the user's go-ahead.
+- Throwaway prototype branches are `prototype/<n>-<slug>`: pushed, linked from their ticket,
+  never merged.
 
 ## Commits, verdicts, and deploys
 
@@ -167,5 +169,3 @@ Every verdict and check belongs to one exact commit.
   the last rebased commit, the one the push to `main` deployed. Find its own deploy run
   (`gh run list --workflow deploy.yml --commit <merge-sha> --json databaseId,status,conclusion`)
   and watch that run (`gh run watch <id>`). The latest run on `main` may belong to another merge.
-- Throwaway prototype branches are `prototype/<n>-<slug>`: pushed, linked from their ticket,
-  never merged.
