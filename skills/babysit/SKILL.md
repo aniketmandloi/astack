@@ -20,6 +20,25 @@ Default to the current branch's PR. Read its body, the issue it closes, and that
 label. The tier names who fixes things: `tier:hard` goes to the **builder**, `tier:small`
 to the **tweaker**, and the builder when unlabelled.
 
+## Checkout
+
+Before any edit, rebase, or push, make sure the local checkout is this PR. The PR named may
+not be the branch the user is on.
+
+1. Read `gh pr view <pr> --json headRefName,headRefOid,isCrossRepository,maintainerCanModify`.
+2. A fork PR (`isCrossRepository`) can be pushed to only when `maintainerCanModify` is true.
+   Otherwise, run **check** mode and comment on the PR with what the author needs to change.
+3. Compare with the local state (`git branch --show-current`, `git status --porcelain`).
+   - **Uncommitted changes**: never stash, reset, or discard them. Stop and ask the user to
+     commit them, stash them, or have the PR worked in a separate worktree. In astack mode,
+     this goes to Waiting on you, and the run moves on to units that don't need the checkout.
+   - **Clean, but on another branch**: `gh pr checkout <pr>`.
+4. `git fetch origin`. Local `HEAD` must equal `headRefOid`. If the remote moved ahead,
+   `git pull --ff-only`. If the two have diverged, stop and report it.
+5. Every push names the branch and the commit it expects to replace:
+   `git push origin HEAD:<headRefName>`, or after a rebase,
+   `git push --force-with-lease=<headRefName>:<oid-before-rebase> origin HEAD:<headRefName>`.
+
 ## Drive loop
 
 Work one problem at a time, in this order, then wait for checks with
@@ -29,7 +48,7 @@ Work one problem at a time, in this order, then wait for checks with
    `main`: `git fetch origin && git rebase origin/main`. Resolve purely mechanical conflicts
    yourself, such as imports, lockfiles, or adjacent edits. Send any conflict that touches
    logic to the builder, with both sides and the issue's goal. Rerun the project's checks,
-   then `git push --force-with-lease`, only ever to the PR's own branch.
+   then push with the explicit lease from Checkout step 5.
 2. **Red checks** (`gh pr checks <pr>`). Read the failure with `gh run view <run-id>
    --log-failed`. If it looks flaky, rerun it once (`gh run rerun <run-id> --failed`). The same
    failure twice is real: brief the tier with the log and the goal.
