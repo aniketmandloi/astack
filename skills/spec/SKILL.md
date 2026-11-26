@@ -27,7 +27,7 @@ labelled `astack:spec` with the body in `../../docs/github.md`.
    `../../docs/launch.md` from the map's launch tickets, with its work split into build work
    and user work.
 5. **Show the draft to the user** and apply their corrections.
-6. **File it**: create the issue; when it came from a map, make it a sub-issue of the map and
-   post its link as the map's closing comment.
+6. **File it**: create the issue. When it came from a map, make it a sub-issue of the map,
+   post its link as the map's closing comment, and close the map, whose job is done.
 
 Then offer the **slice** skill.
