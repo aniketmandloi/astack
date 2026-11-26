@@ -1,0 +1,5 @@
+interface:
+  display_name: "AStack mode"
+  short_description: "Drive a goal through every stage on its own"
+policy:
+  allow_implicit_invocation: false

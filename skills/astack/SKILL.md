@@ -35,6 +35,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | An open PR awaiting review, or "review this" | **review** |
 | "What's next?" or no request | **build** on the next startable slice; otherwise the next frontier ticket of an open map |
 | Release or deploy to production | Tell the user to run `/astack:ship` (Codex: `$ship`) |
+| "Do it all yourself", "run until done" | Tell the user to run `/astack:mode <goal>` (Codex: `$mode`); only they can grant it |
 
 When two rows fit, take the earlier stage: unsettled decisions come before building.
 

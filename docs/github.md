@@ -12,7 +12,8 @@ can pick up where another left off.
 - Every issue, comment, PR body, and commit message follows the prose rules in
   `docs/slop.md`.
 - Never merge a PR, delete a branch, or approve a production deployment without the user's
-  explicit go-ahead in this session.
+  explicit go-ahead in this session. Typing `/astack:mode` is that go-ahead for merges that
+  pass its gates (`docs/autonomy.md`), and for nothing else.
 
 ## Labels
 
@@ -24,6 +25,7 @@ can pick up where another left off.
 | `astack:spec` | A settled spec, ready to slice |
 | `astack:slice` | A vertical slice of a spec: buildable work |
 | `astack:bug` | A bug report |
+| `astack:run` | An astack mode run's tracking issue (`docs/autonomy.md`) |
 | `astack:launch` | A slice needed before the first customer (`docs/launch.md`); added alongside `astack:slice` |
 | `status:ready` | Buildable now, pending only its blockers |
 | `status:in-progress` | Claimed (the assignee is the claim) |
