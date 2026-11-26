@@ -12,8 +12,9 @@ is recorded in the run issue.
 - **Prototype tickets**: judges the prototype against what can be observed. On taste alone,
   takes the conventional choice for the product's kind.
 - **Drafts**: files specs, slice lists, and acceptance criteria without waiting for approval.
-- **Merging**: squash-merges a PR into `main` when its `ci` check is green, its deslop pass is
-  clean, and the review verdict is "ready". This deploys to development only.
+- **Merging**: squash-merges a PR into `main` when, at its current head commit, the `ci` check
+  is green, the deslop pass is clean, and the review verdict is "ready". The merge is pinned to
+  that commit with `--match-head-commit` (`docs/github.md`). This deploys to development only.
 - **Routine GitHub work**: issues, labels, branches, PRs, comments, agent spawns.
 
 Every skill step that says "show the user", "get the user's confirmation", or "wait" becomes

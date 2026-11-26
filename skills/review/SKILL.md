@@ -8,8 +8,9 @@ argument-hint: "[pr]"
 
 Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
 
-1. **Load** the PR (default: the current branch's PR): body, diff, `gh pr checks`, and the
-   issue it closes with its acceptance criteria.
+1. **Load** the PR (default: the current branch's PR): body, diff, `gh pr checks`, the issue
+   it closes with its acceptance criteria, and its head commit SHA. Review exactly that commit.
+   When the PR was already reviewed at an older SHA, the review covers the commits since then.
 2. **Review in a fresh context.** Brief the **builder** agent in review mode, so the reviewer
    isn't the author. Give it the PR number, the issue's acceptance criteria, and this list:
    - each acceptance criterion: met, with the code or test that shows it, or not met
@@ -27,9 +28,12 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
    Drop any finding it can't tie to one of those.
 3. **Check CI** yourself. A red check is a finding. Any slop finding means "changes needed";
    it is never left as a nit.
-4. **Post** one PR comment with `gh pr review <pr> --comment`: verdict (ready to merge, or
-   changes needed), then findings, most severe first. A solo author can't approve their own PR,
+4. **Post** one PR comment with `gh pr review <pr> --comment`. It opens with
+   `Reviewed at <head-sha>`, then the verdict (ready to merge, or changes needed), then the
+   findings, most severe first. A solo author can't approve their own PR,
    so the verdict goes in the comment.
 5. **Changes needed**: offer the **babysit** skill, which works through the findings with the
-   tier that wrote the code. **Ready**: tell the user it's ready. Merge only on their explicit go-ahead, with
-   `gh pr merge --squash`. The issue closes through `Closes #<n>`.
+   tier that wrote the code. **Ready**: tell the user it's ready. Merge only on their explicit
+   go-ahead, pinned to the reviewed commit, then watch the deploy of the merge commit, as
+   `../../docs/github.md` "Commits, verdicts, and deploys" says. The issue closes through
+   `Closes #<n>`.
