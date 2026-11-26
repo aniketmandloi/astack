@@ -12,8 +12,9 @@ pinned models (`../../docs/routing.md`). Any request can enter here, at any stag
 ## 1. Orient
 
 Send a **scout** agent to report, read-only:
-- the repo (`gh repo view --json nameWithOwner,visibility`) and whether AStack is set up
-  (the `astack:slice` label exists)
+- the repo (`gh repo view --json nameWithOwner,visibility`) and whether AStack is set up:
+  `gh variable get ASTACK_SETUP` reads `complete`. AStack labels without that variable mean
+  setup was interrupted.
 - open `astack:map`, `astack:spec`, `astack:slice`, and `astack:bug` issues, with status,
   tier, and assignee
 - open PRs and their check status, and whether the repo has application code yet
@@ -24,7 +25,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 
 | Situation | Route |
 |---|---|
-| Not set up | Tell the user to run `/astack:setup` (Codex: `$setup`); it changes repo settings, so only they start it |
+| Not set up, or setup interrupted | Tell the user to run `/astack:setup` (Codex: `$setup`); it resumes an interrupted setup, and it changes repo settings, so only they start it |
 | New project, or an effort too big or foggy for one session | **chart** → **spec** → **slice** |
 | A feature with open decisions that fits one session | **grill** → **spec** → **slice** |
 | A clear feature, UI change, or tweak that fits one session | **build** (it files the issue first) |

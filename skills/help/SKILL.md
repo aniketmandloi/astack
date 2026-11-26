@@ -33,7 +33,8 @@ If the files don't answer it, say so plainly rather than filling the gap.
 ## What to do next
 
 Send a **scout** agent (`../../docs/routing.md`) for the repo's state, read-only:
-- whether AStack is set up (the `astack:slice` label exists)
+- whether AStack is set up (`gh variable get ASTACK_SETUP` reads `complete`; labels without
+  it mean setup was interrupted, and rerunning `/astack:setup` resumes it)
 - an open `astack:run` issue, with its Waiting on you
 - open `astack:map`, `astack:spec`, `astack:slice`, `astack:bug`, and `astack:launch` issues,
   with status, tier, assignee, and open blockers
