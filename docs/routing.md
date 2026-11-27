@@ -1,7 +1,7 @@
 # Model routing
 
 AStack skills are orchestrators: they talk to the user, decide, and read GitHub. They hand
-every piece of real work to one of four agents, and each agent pins its own model and effort.
+every piece of real work to one of five agents, and each agent pins its own model and effort.
 The routing lives in the agents, not the skills, because in Claude Code a skill's `model` only
 applies when the user types `/name`; an agent's `model` and `effort` apply every time it runs.
 
@@ -11,6 +11,7 @@ applies when the user types `/name`; an agent's `model` and `effort` apply every
 | **tweaker** | Small contained edits: copy, style, small UI, renames, config bumps | `astack:tweaker`: `claude-opus-5-5`, effort `medium` | `astack_tweaker`: `gpt-6.2-sol`, `high` |
 | **scout** | Read-only fact finding: code search, `gh` reads, docs, versions | `astack:scout`: `claude-haiku-5-5`, effort `high` | `astack_scout`: `gpt-6.2-sol`, `low` |
 | **clerk** | Mechanical, fully specified `gh` writes in bulk | `astack:clerk`: `claude-haiku-5-5`, effort `high` | `astack_clerk`: `gpt-6.2-sol`, `low` |
+| **writer** | PR descriptions: summary, file table, diagram, criteria with evidence, risk | `astack:writer`: `claude-haiku-5-5`, effort `high` | `astack_writer`: `gpt-6.2-sol`, `medium` |
 
 To change a tier, edit one line in `agents/<name>.md` (Claude Code) or
 `codex/agents/astack_<name>.toml` (Codex), and keep the pair's instructions in sync.
@@ -32,6 +33,8 @@ the exact `gh` commands from `docs/github.md` it should use.
   Unlabelled: builder when in doubt. A tweaker that reports "bigger than it looked" hands off
   to the builder with its findings.
 - Anything that needs facts you do not have: **scout**. Run independent scouts in parallel.
+- Writing or updating a PR description: **writer**, through the **pr** skill. The builder's
+  report supplies the diagram sketch, so the writer assembles rather than re-derives.
 - Three or more GitHub writes whose content is already decided: **clerk**. One or two: do them
   yourself; a delegation costs more than the call.
 - Talking with the user, making decisions, and writing specs stay in the orchestrating session.
