@@ -1,6 +1,6 @@
 ---
 name: astack
-description: Start here for any software work in a GitHub repo - starting a new project, adding a feature, changing the UI, fixing a bug, making a small tweak, reviewing a PR, releasing, or asking "what's next". Reads the repo's GitHub issues and PRs to find where work stands and routes to the right AStack skill (chart, grill, spec, slice, build, fix, review, babysit, triage, retro, help, setup, ship, mode).
+description: Start here for any software work in a GitHub repo - starting a new project, adding a feature, changing the UI, fixing a bug, making a small tweak, reviewing a PR, releasing, or asking "what's next". Reads the repo's GitHub issues and PRs to find where work stands and routes to the right AStack skill (chart, grill, spec, slice, build, fix, review, pr, babysit, triage, retro, help, setup, ship, mode).
 argument-hint: "[what you want to do]"
 ---
 
@@ -38,6 +38,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | A refactor or cleanup that keeps behaviour the same | **build**, in refactor mode |
 | A map with open tickets | **chart** on that map |
 | A spec with no Slice plan, or one with unticked items | **slice** |
+| A reviewed branch with no PR, "open a PR", or "update the PR description" | **pr** |
 | An open PR awaiting review, or "review this" | **review** |
 | A PR with red checks, conflicts, or unanswered comments | **babysit** |
 | "What's next?" or no request | **build** on the next startable slice; otherwise the next frontier ticket of an open map |
