@@ -145,11 +145,60 @@ blocker and no assignee, oldest first.
 ## Branches and pull requests
 
 - One branch per issue from the latest `main`: `<n>-<short-slug>`.
-- The PR body starts with `Closes #<n>`, then a `## Why` section stating the goal in one
-  sentence (what the change gives its user), then: what changed, how each acceptance criterion
-  is met, checks run with results, a Deslop section (the number of rounds, and each finding
-  by slop rule number), environment impact, and what the user must check by hand.
-  Every claim is labelled measured (run and seen), inferred, or a guess.
+- The **pr** skill writes the PR body with this template. Leave out any section with nothing
+  true to say, and label every claim measured (run and seen), inferred, or a guess. A fix PR
+  adds a `## Root cause` section after Why.
+
+  ````markdown
+  Closes #<n>
+
+  ## Why
+  <the goal in one sentence: what the change gives its user>
+
+  ## Summary
+  <two to four sentences: what changed, and how it works now>
+
+  ## Changes
+  | File | Change |
+  |---|---|
+  | `<path>` | <what changed in it, in one line> |
+
+  ## How it works
+  ```mermaid
+  sequenceDiagram
+    participant UI as "Invite form"
+    participant API as "POST /invites"
+    UI->>API: "email, role"
+    API-->>UI: "201, invite id"
+  ```
+
+  ## Acceptance criteria
+  - [x] <criterion>: <evidence, such as a test name or file:line> (measured)
+
+  ## Review
+  Reviewed at `<sha>` (<full | delta>): <verdict>. Fixed during review: <each finding, with
+  the commit that fixed it>.
+
+  ## Risk
+  <low | medium | high>, because <reason>. Blast radius: <what outside the diff depends on
+  this, and why it's safe>.
+
+  ## Checks
+  - `<command>`: <result> (measured)
+
+  ## Deslop
+  <the number of rounds, and each finding by slop rule number, or "skipped: tier:small">
+
+  ## Environments
+  <new variables and secrets per environment, migrations, and rollout notes>
+
+  ## Check by hand
+  <what the user must look at, or a link to the "Checks for you" comment>
+  ````
+
+  The diagram is a `sequenceDiagram` for a request or call flow, a `flowchart` for logic or
+  states, or an `erDiagram` for data. It's included only when the change crosses components or
+  changes a flow, and only when it's drawn from the code. A wrong diagram is worse than none.
 - When the PR opens, move the issue to `status:in-review`. Merging needs the user's go-ahead.
   When AStack manages `merge`, merges are rebase-only, so every commit on the branch lands on
   `main`. When it doesn't, use the method the repo allows (`docs/footprint.md`).
