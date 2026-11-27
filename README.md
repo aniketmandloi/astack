@@ -78,7 +78,7 @@ mkdir -p ~/.codex/agents && cp astack/codex/agents/*.toml ~/.codex/agents/
 ```
 
 Then install AStack from `/plugins` inside Codex, and start a new session. Codex plugins don't
-carry custom agents, so the copy step installs the four model-routing agents.
+carry custom agents, so the copy step installs the five model-routing agents.
 
 ## How I use it
 
