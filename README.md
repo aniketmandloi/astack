@@ -133,10 +133,18 @@ The first slices are always the same three:
 ### Building
 
 ```
-/astack:build           picks the next ready slice and opens a tested PR
-/astack:review          a fresh agent reviews the PR and posts findings on it
-/astack:babysit         keeps the PR green and answers comments
+/astack:build           picks the next ready slice, then does everything up to merge-ready
 ```
+
+That one command runs the whole loop:
+1. The right-tier agent builds the slice test-first, and it gets verified and deslopped.
+2. A fresh agent reviews the branch before anything is pushed. Fixes get a delta review that
+   covers only the new commits, not the whole PR again.
+3. Once the review is clean, the `pr` skill opens one PR. Its description has a summary, a
+   table of changed files, a Mermaid diagram of the flow, each acceptance criterion with its
+   evidence, the review result, and a risk rating with the blast radius. CI runs once, on
+   reviewed code.
+4. Babysit keeps the PR green and answers comments.
 
 Then I merge, and it deploys to development. Merges are rebase merges, so every commit lands on
 `main`.
@@ -203,7 +211,8 @@ the production deploy. If the deploy fails, it offers to roll back to the previo
 | `slice` | Splits a spec into vertical-slice issues with acceptance criteria and a tier |
 | `build` | Takes one issue to a tested PR through the right-tier agent |
 | `fix` | A reproducing test, a root-cause fix, and a PR |
-| `review` | A fresh-context review against the issue, pinned to the commit it reviewed |
+| `review` | A fresh-context review against the issue, before the PR opens; re-reviews cover only new commits |
+| `pr` | Opens the PR with a summary, file table, Mermaid diagram, evidence, review result, and risk |
 | `babysit` | Keeps a PR merge-ready: CI, conflicts, review comments. Never merges |
 | `triage` | Sorts unlabelled issues and feedback |
 | `retro` | Turns repeated mistakes into guards |
@@ -213,7 +222,7 @@ the production deploy. If the deploy fails, it offers to roll back to the previo
 
 ## Model routing
 
-Skills decide and talk to me; four agents do the work. Each agent has its model and effort
+Skills decide and talk to me; five agents do the work. Each agent has its model and effort
 pinned, because in Claude Code a skill's own `model` setting only applies when I type its
 slash command ([docs/routing.md](docs/routing.md)).
 
@@ -223,6 +232,7 @@ slash command ([docs/routing.md](docs/routing.md)).
 | tweaker | Small contained edits | Opus 5.5, medium | gpt-6.2-sol, high |
 | scout | Search, GitHub reads, docs lookups | Haiku 5.5, high | gpt-6.2-sol, low |
 | clerk | Bulk, fully specified GitHub writes | Haiku 5.5, high | gpt-6.2-sol, low |
+| writer | PR descriptions, from the builder's report and diagram sketch | Haiku 5.5, high | gpt-6.2-sol, medium |
 
 ## Testing the running app
 
