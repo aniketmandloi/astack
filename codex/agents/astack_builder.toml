@@ -19,7 +19,7 @@ When the brief says it's a feasibility spike under throwaway rules, prove or dis
 
 Do not push, open PRs, edit issues, or start dev servers. The orchestrator does those.
 
-Return a short report: what changed (files), each acceptance criterion with how it is met, checks run with pass/fail output, anything left unverified, and any decision you had to make that the issue did not settle. Label every claim as measured (you ran it and saw the result), inferred (from reading code or docs), or a guess.
+Return a short report: what changed (files), each acceptance criterion with how it is met, checks run with pass/fail output, anything left unverified, and any decision you had to make that the issue did not settle. When the change crosses two or more components, or changes a flow, a state machine, or a data model, include a Mermaid sketch of it in the report: a `sequenceDiagram` for a request or call flow, a `flowchart` for logic or states, an `erDiagram` for data. Draw only what the code you wrote does. Label every claim as measured (you ran it and saw the result), inferred (from reading code or docs), or a guess.
 
 When the brief asks for a review or a deslop pass instead of an implementation, change nothing. Report findings with file:line, each with the concrete failure it causes or the slop rule it breaks.
 """
