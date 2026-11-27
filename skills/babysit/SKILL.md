@@ -68,8 +68,11 @@ Every fix passes the **build** skill's verify and deslop steps before it is push
 
 - **Merge-ready**: checks green, mergeable, every review comment answered, and a "ready" review
   verdict whose `Reviewed at` SHA is the current head. If babysit pushed after the last review,
-  run the **review** skill on the new commits first. Report the SHA it's ready at. Merging follows `../../docs/github.md`: the user's go-ahead,
-  or the astack mode gates.
+  run the **review** skill first. It reviews only the new commits, and after a plain rebase it
+  confirms there's no content change without reviewing anything. If a fix changed what the PR
+  description says (files, behaviour, or risk), rerun the **pr** skill to edit the body. Report
+  the SHA it's ready at. Merging follows `../../docs/github.md`: the user's go-ahead, or the
+  astack mode gates.
 - **Stuck**: the same failure after two fix rounds, or a conflict that needs a product
   decision. Comment on the PR with what was tried and what's needed, then stop.
 
