@@ -1,6 +1,6 @@
 ---
 name: build
-description: Build one GitHub issue end to end - claim it, branch, have the right-tier agent implement it test-first, verify, deslop, push, and open a PR that closes it. Use for any feature, slice, UI change, small tweak, or behaviour-preserving refactor. Takes an issue number, a plain description of a small change (it files the issue first), or nothing (it picks the next ready issue).
+description: Build one GitHub issue end to end - claim it, branch, have the right-tier agent implement it test-first, verify, deslop, review on the branch until clean, then open one PR that closes it and babysit it. Use for any feature, slice, UI change, small tweak, or behaviour-preserving refactor. Takes an issue number, a plain description of a small change (it files the issue first), or nothing (it picks the next ready issue).
 argument-hint: "[issue | description]"
 ---
 
@@ -72,17 +72,29 @@ user what remains and stop. Run the CI gate's commands locally too when the repo
 Record the number of rounds and each finding's slop rule for the PR's Deslop section; `retro`
 learns from it.
 
-## 6. Open the PR
+## 6. Review, before any PR
 
-Push the branch and open a PR with the body from `../../docs/github.md`, written to the prose
-rules in `../../docs/slop.md`. Move the issue to `status:in-review`.
+Run the **review** skill in branch mode, automatically. Nothing is pushed and no PR exists
+yet, so fix rounds cost no CI minutes. On changes needed, send the findings to the tier that
+wrote the code, verify the fixes, and run review again; the second pass is a delta review of
+just the new commits. Repeat until the verdict is ready. After two rounds that aren't ready,
+show the user what remains and stop.
 
-## 7. Hands-on checks
+## 7. Open the PR
+
+Run the **pr** skill with the issue, the builder's report and diagram sketch, the review
+result, the checks, and the deslop record. It pushes the branch, opens the PR on the reviewed
+commit, and posts the review as the first comment. CI runs once, on code that's already been
+reviewed.
+
+## 8. Hands-on checks
 
 For a user-facing change, follow `../../docs/app-checks.md`. Read `ASTACK_APP_CHECKS`, and ask
 the user if it's unset. With `agent`, run the checks and post the results. With `manual`, post
 the "Checks for you" comment on the issue and link it from the PR. Never start a dev server
 unless the user chose `agent`.
 
-Then offer the **review** skill, and run the **babysit** skill so the PR stays green and
-conflict-free while it waits.
+## 9. Babysit
+
+Run the **babysit** skill. It handles anything that only shows up once the PR is open (a red CI
+run, a conflict, a comment) and keeps the PR merge-ready. Merging stays the user's call.
