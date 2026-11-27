@@ -25,8 +25,11 @@ Conventions: `../../docs/github.md`. Routing: `../../docs/routing.md`.
 5. **Verify and deslop** as in the **build** skill: the reproducing test now passes, the rest
    of the suite still passes, the diff touches only what the root cause needs, and a deslop
    pass comes back clean.
-6. **Open the PR** closing the issue, with a short root-cause section: what was wrong, why, and
-   why the fix is in the right place. Move the issue to `status:in-review`.
+6. **Review, then open the PR**, as in the **build** skill's steps 6 and 7. Run review on the
+   branch automatically and repeat it, as a delta, until it's ready. Then use the **pr** skill,
+   passing the root cause (what was wrong, why, and why the fix is in the right place) for its
+   Root cause section.
 7. **Hands-on checks** for a user-facing bug, as in the **build** skill
    (`../../docs/app-checks.md`): the reproduction steps become the first check, and the
    expected result is the fixed behaviour.
+8. **Babysit** the PR, as in the **build** skill.
