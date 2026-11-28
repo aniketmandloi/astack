@@ -105,6 +105,28 @@ later to add more. Whatever I leave to the repo, the other skills work with what
 there: its own checks, its merge method, and its deploy workflow
 ([docs/footprint.md](docs/footprint.md)).
 
+### Coming from another stack
+
+```
+/astack:adopt
+```
+
+For a project with plenty of code but nothing on GitHub yet, built with BMAD, Spec Kit,
+pstack, gstack, or no workflow at all. Adopt reads the code, the git history, and any
+planning files the old workflow left, and checks every planned item against the code. After
+one preview, it files:
+
+- a closed **Baseline** spec: how the system works today, each claim labelled measured,
+  documented, or inferred, and linked to its source. Later specs and grills build on its
+  decisions
+- unfinished work as specs and slices when its decisions are settled, or as plain issues for
+  `triage` when they aren't. Finished work stays a line in the baseline
+- a cleanup slice for slop already in the code, so turning on CI later doesn't block
+
+It deletes nothing. It offers one PR that moves the old rules into `AGENTS.md` and replaces
+each imported planning file with a link to its issue, and I can say no. Rerunning it imports
+only what's new.
+
 ### Starting a new project
 
 ```
@@ -229,6 +251,7 @@ the production deploy. If the deploy fails, it offers to roll back to the previo
 | `triage` | Sorts unlabelled issues and feedback |
 | `retro` | Turns repeated mistakes into guards |
 | `setup` | One-time repo setup *(only I start it)* |
+| `adopt` | Brings an existing project and its old plans onto GitHub *(only I start it)* |
 | `ship` | Releases to production *(only I start it)* |
 | `mode` | Runs a goal end to end on its own *(only I start it)* |
 
