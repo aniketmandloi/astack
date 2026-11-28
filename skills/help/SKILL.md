@@ -17,7 +17,8 @@ or paraphrase them, and name the file.
 | Question about | Read |
 |---|---|
 | The overall flow, install, the list of skills | `../../README.md` |
-| A specific skill | `../<skill>/SKILL.md` (astack, mode, setup, chart, grill, spec, slice, build, fix, review, pr, babysit, triage, retro, ship) |
+| A specific skill | `../<skill>/SKILL.md` (astack, mode, setup, adopt, chart, grill, spec, slice, build, fix, review, pr, babysit, triage, retro, ship) |
+| Moving an existing project in from BMAD, Spec Kit, pstack, gstack, or no workflow | `../adopt/SKILL.md` |
 | Testing the running app, hands-on checks, `ASTACK_APP_CHECKS` | `../../docs/app-checks.md` |
 | The guard that blocks destructive commands | `../../docs/autonomy.md`, `../../hooks/guard.py` |
 | Labels, issue bodies, branches, PRs | `../../docs/github.md` |

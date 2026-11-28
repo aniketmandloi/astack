@@ -1,6 +1,6 @@
 ---
 name: astack
-description: Start here for any software work in a GitHub repo - starting a new project, adding a feature, changing the UI, fixing a bug, making a small tweak, reviewing a PR, releasing, or asking "what's next". Reads the repo's GitHub issues and PRs to find where work stands and routes to the right AStack skill (chart, grill, spec, slice, build, fix, review, pr, babysit, triage, retro, help, setup, ship, mode).
+description: Start here for any software work in a GitHub repo - starting a new project, adding a feature, changing the UI, fixing a bug, making a small tweak, reviewing a PR, releasing, or asking "what's next". Reads the repo's GitHub issues and PRs to find where work stands and routes to the right AStack skill (chart, grill, spec, slice, build, fix, review, pr, babysit, triage, retro, help, setup, adopt, ship, mode).
 argument-hint: "[what you want to do]"
 ---
 
@@ -30,6 +30,7 @@ Skip it when the request already names an issue or PR and the repo is known to b
 | Situation | Route |
 |---|---|
 | Not set up, or setup interrupted | Tell the user to run `/astack:setup` (Codex: `$setup`); it resumes an interrupted setup, and it changes repo settings, so only they start it |
+| Application code but no AStack issues yet, or moving from another workflow (BMAD, Spec Kit, pstack, gstack) | Tell the user to run `/astack:adopt` (Codex: `$adopt`); it files many issues at once, so only they start it |
 | New project, or an effort too big or foggy for one session | **chart** → **spec** → **slice** |
 | A feature with open decisions that fits one session | **grill** → **spec** → **slice** |
 | A clear feature, UI change, or tweak that fits one session | **build** (it files the issue first) |
