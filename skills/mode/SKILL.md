@@ -27,11 +27,14 @@ goal is about them ("triage the backlog", "fix the open bugs").
 ## 1. Start or resume
 
 - **No goal**: find the open `astack:run` issue and resume from its Scope, Progress, and
-  Waiting on you. If there's none, ask for a goal.
-- **Goal given**: restate it in one sentence, with the smallest outcome that meets it. Create
-  the run issue from the template in `../../docs/autonomy.md`, recording any narrowing the
-  user gave. Tell the user the goal and the first step in two lines, then start without
-  waiting.
+  Waiting on you. A Grant with no Reviews line means reviews happen here. If there's no open
+  run, ask for a goal.
+- **Goal given**: restate it in one sentence, with the smallest outcome that meets it. If the
+  message doesn't say who reviews ("review with codex"), ask "Review here, or in another
+  CLI?" and wait for that one answer; it's the only question before a run starts. Create the
+  run issue from the template in `../../docs/autonomy.md`, recording any narrowing the user
+  gave and the reviewer in Grant. Tell the user the goal and the first step in two lines,
+  then start without waiting.
 
 Orient as the **astack** skill's step 1 does. If the repo isn't set up (`ASTACK_SETUP` isn't
 `complete`), put `/astack:setup` in Waiting on you and stop.
@@ -78,7 +81,8 @@ After each unit, update the run issue's Scope, Progress, Decided by astack mode,
 on you. Re-read the run issue rather than trusting memory once the conversation is long.
 
 No gate is skipped in a run. Test-first, deslop, review, and CI all apply as they do in the
-skills. When a unit fails the same way twice, stop working on it, record what was tried
+skills. Pass the reviewer from Grant to every **build**, **fix**, and **review**, so none of
+them asks. When a unit fails the same way twice, stop working on it, record what was tried
 under Waiting on you, and move on to the next unit.
 
 ## 4. Stop

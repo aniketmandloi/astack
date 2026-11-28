@@ -37,6 +37,9 @@ don't block, and stops only when everything left waits on the user.
   product's name and brand, and anything the user has said they'll decide.
 - **Reversing a user decision**: anything that contradicts what the user decided earlier.
 - **Repo setup**: `/astack:setup` is the user's to run.
+- **Reviews in another CLI**: when Grant says reviews happen in another CLI, each review is
+  listed with its one-line prompt for the user to run there. That branch or PR waits until
+  the reply is pasted back.
 - **Hands-on checks** (`docs/app-checks.md`): with `ASTACK_APP_CHECKS` unset, the run uses
   `manual` and adds the question to the list. Each "Checks for you" comment joins the list
   too, and the change still merges to development, where the checks are run.
@@ -61,6 +64,7 @@ there the instructions are the only guard.
 
 ## Grant
 <the default grant, plus any narrowing the user gave>
+Reviews: <here | in <codex or claude-code>, relayed by the user>
 
 ## Scope
 - [<map, spec, or issue that holds the goal>](<url>)
