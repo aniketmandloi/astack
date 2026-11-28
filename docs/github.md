@@ -176,8 +176,8 @@ blocker and no assignee, oldest first.
   - [x] <criterion>: <evidence, such as a test name or file:line> (measured)
 
   ## Review
-  Reviewed at `<sha>` (<full | delta>): <verdict>. Fixed during review: <each finding, with
-  the commit that fixed it>.
+  Reviewed at `<sha>` by <reviewer> (<full | delta>): <verdict>. Fixed during review: <each
+  finding, with the commit that fixed it>.
 
   ## Risk
   <low | medium | high>, because <reason>. Blast radius: <what outside the diff depends on
@@ -209,7 +209,7 @@ blocker and no assignee, oldest first.
 
 Every verdict and check belongs to one exact commit.
 
-- **Review**: the review comment opens with `Reviewed at <head-sha>`, from
+- **Review**: the review comment opens with `Reviewed at <head-sha> by <reviewer>`, from
   `gh pr view <pr> --json headRefOid --jq .headRefOid`. The verdict covers only that commit.
   Any later push needs a review of the new commits before the PR is merge-ready again.
 - **Merge**: `gh pr merge <pr> --rebase --match-head-commit <reviewed-sha>`. Use `--merge` or
