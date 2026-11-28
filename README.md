@@ -153,6 +153,18 @@ For a clear feature, a UI change, or a small tweak, I skip planning and go strai
 `/astack:build "what I want"`. It files the issue first. When a feature still has open
 decisions, I start with `/astack:grill`.
 
+### Reviewing in the other agent
+
+When I build in Claude Code, I can have Codex review it, or the other way round. Before the
+branch review, it asks once per issue: "Review here, or in another CLI?" If I choose another
+CLI, it writes the brief inside `.git` and gives me one line to paste into Codex:
+`Read <path> and follow it.` I paste Codex's reply back, and the agent checks that it covers
+the current commit before it fixes anything. Delta rounds work the same way, best in the same
+Codex session. The result names its reviewer (`Reviewed at <sha> by codex`), so later
+re-reviews on the PR use the same one without asking. In `/astack:mode`, I pick the reviewer
+once when the run starts ("..., review with codex"). Each review then waits under "Waiting
+on you" while the run works on other slices.
+
 ### Fixing and cleaning up
 
 ```
@@ -211,7 +223,7 @@ the production deploy. If the deploy fails, it offers to roll back to the previo
 | `slice` | Splits a spec into vertical-slice issues with acceptance criteria and a tier |
 | `build` | Takes one issue to a tested PR through the right-tier agent |
 | `fix` | A reproducing test, a root-cause fix, and a PR |
-| `review` | A fresh-context review against the issue, before the PR opens; re-reviews cover only new commits |
+| `review` | A fresh-context review against the issue, before the PR opens, here or in the other agent; re-reviews cover only new commits |
 | `pr` | Opens the PR with a summary, file table, Mermaid diagram, evidence, review result, and risk |
 | `babysit` | Keeps a PR merge-ready: CI, conflicts, review comments. Never merges |
 | `triage` | Sorts unlabelled issues and feedback |
