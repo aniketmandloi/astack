@@ -22,7 +22,7 @@ can pick up where another left off.
 | `astack:map` | A chart map: index of decisions for a large effort |
 | `astack:decision` | A decision ticket under a map |
 | `decision:research` / `decision:prototype` / `decision:grilling` / `decision:task` | Decision ticket type |
-| `astack:spec` | A settled spec, ready to slice |
+| `astack:spec` | A settled spec, ready to slice. A closed one titled `Baseline:` is adopt's record of an existing system |
 | `astack:slice` | A vertical slice of a spec: buildable work |
 | `astack:bug` | A bug report |
 | `astack:release` | User work needed only before a production release, such as Connect production or buying the domain. Development runs don't wait on it; `ship` does |
@@ -88,6 +88,35 @@ reason"), and its work, split into build work and user work>
 ## Risks
 ## Open questions
 <must be empty before slicing>
+```
+
+**Baseline** (`astack:spec`, closed, titled `Baseline: <repo>`, written by **adopt**): how an
+existing system works, so later specs build on its decisions. Sources are permalinks at the
+commit it read (`https://github.com/<owner>/<repo>/blob/<sha>/<path>#L<n>`), which keep
+working after a file is removed.
+
+```markdown
+How <repo> works at `<sha>`, as adopt found it. Each claim is measured (seen in the code),
+documented (only in a doc), or inferred, with a link to its source.
+
+## What it does
+## Areas
+### <area>
+<what it does, key files, data, interfaces, and the tests that cover it>
+## Stack and commands
+## Data model
+## Environments
+<where it deploys, its config, and what differs between development and production>
+## Decisions
+- <decision>: <source link> (<measured | documented | inferred>)
+## Conflicts
+- <what the doc says> (<link>); <what the code does> (<link>): <resolution>
+## Known gaps
+<untested areas, TODO count, slop hits and the cleanup slice>
+## Rules found
+<rules from the old workflow's files, and where they moved, or "not moved">
+## Sources imported
+- `<path>` at `<sha>`: <the issues it became>
 ```
 
 **Slice** (`astack:slice` + `status:ready` + `tier:*`, sub-issue of its spec):
