@@ -81,10 +81,11 @@ what they want, and then it becomes a bug or a slice. Apply only what the user a
 
 ## 6. Write it on GitHub
 
-- File the baseline first (body in `../../docs/github.md`), then the specs, slices, and plain
-  issues, through the **clerk** when there are three or more. Wire sub-issues and blocked-by
-  edges in a second pass. Each imported issue's body ends with `Imported from <permalink>`.
-- Close the baseline with a comment that lists what was imported.
+- File the specs, slices, and plain issues first, through the **clerk** when there are three
+  or more. Each body ends with `Imported from <permalink>`. Wire sub-issues and blocked-by
+  edges in a second pass.
+- Then file the baseline (body in `../../docs/github.md`), so its Sources imported list can
+  link the issues each source became. Close it with a comment that lists what was imported.
 - On a rerun, update the baseline's sections and its Sources imported list, and comment what
   changed.
 
