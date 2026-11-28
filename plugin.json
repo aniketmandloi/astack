@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "astack",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A GitHub-only workflow for building any project with coding agents: chart, grill, spec, slice, build, review, and ship, with every bit of state kept in GitHub issues and PRs.",
   "author": {
     "name": "aniketmandloi"
