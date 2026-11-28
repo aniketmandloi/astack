@@ -100,4 +100,5 @@ stopped, and a rerun can also grow the footprint.
 12. **Report** a table: each item, whether it's managed, and for managed items whether it was
     applied, already present, or not available on this plan. Include the effective
     branch-retention setting when `merge` is managed. Then point to the next step: **chart**
-    for a new project, **build** for an existing one.
+    for a new project; for an existing one, `/astack:adopt` (Codex: `$adopt`) when it has
+    code but no AStack issues yet, and **build** otherwise.
