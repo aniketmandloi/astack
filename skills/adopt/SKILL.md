@@ -48,13 +48,14 @@ Send scouts in parallel. Each labels every claim measured (seen in the code), do
   with no `astack:` label.
 - **The system**: what it does, its areas, key files, data model, interfaces, external
   services, commands, deploy target, and the tests that cover each area. Use one scout per
-  top-level area in a large repo. Commit messages and merged PR bodies often record why a
-  decision was made.
+  top-level area in a large repo. Commit messages, merged PR bodies, and closed issues with
+  the PRs that closed them often record why a decision was made.
 
 ## 3. Check every plan against the code
 
-For each planned item (story, task, epic, roadmap line), a scout reports **built** (the code
-or test that shows it), **partly built** (what's there and what's missing), or **not built**.
+For each planned item (story, task, epic, roadmap line) and each open issue with no
+`astack:` label, a scout reports **built** (the code or test that shows it; for a bug, that
+it's fixed), **partly built** (what's there and what's missing), or **not built**.
 Where a doc and the code disagree, the code is what runs. Record the conflict.
 
 ## 4. Decide what each item becomes
@@ -66,8 +67,12 @@ Where a doc and the code disagree, the code is what runs. Record the conflict.
 | A single settled item | A standalone `astack:slice` with `status:ready` and a tier |
 | Anything with open decisions, or too vague to slice | A plain issue with no `astack:` label, quoting its source. **triage** sorts it next, into chart, grill, or a slice |
 | An open branch or PR | Linked from the issue it belongs to. One that matches nothing is listed for the user |
+| An open issue with no `astack:` label | Stays where it is, never refiled. Built or fixed: a closing comment naming the code or test, for the user to approve. Otherwise **triage** labels it in place |
 | `TODO` comments | Not filed. Counted under Known gaps and offered to triage as a list |
 | Slop in existing code | When the repo has the gate's linter and unused-code tools (`../../docs/slop.md`, "CI gate"), run them over the whole codebase. The hits become one `astack:slice` cleanup in refactor mode, so turning on `ci` later doesn't block on old code. Without the tools, note it under Known gaps |
+
+Before filing anything, match it against the repo's issues, open and closed. A match gets a
+comment linking the source instead of a new issue.
 
 An epic with an open decision isn't a spec yet. Send its open decisions to triage as above,
 and file slices only for the stories that are settled.
@@ -75,7 +80,8 @@ and file slices only for the stories that are settled.
 ## 5. Preview
 
 Before writing anything, show one table: the baseline's sections, each issue with its kind,
-title, and source, and each conflict. List the file changes from step 7 separately, as their
+title, and source, each existing issue to close with the code that does it, and each
+conflict. List the file changes from step 7 separately, as their
 own opt-in. For each conflict, ask: the code wins, unless the user says the doc describes
 what they want, and then it becomes a bug or a slice. Apply only what the user approves.
 
@@ -83,7 +89,8 @@ what they want, and then it becomes a bug or a slice. Apply only what the user a
 
 - File the specs, slices, and plain issues first, through the **clerk** when there are three
   or more. Each body ends with `Imported from <permalink>`. Wire sub-issues and blocked-by
-  edges in a second pass.
+  edges in a second pass. Comment on the matched existing issues, and comment on, then close,
+  the existing issues the user agreed are done.
 - Then file the baseline (body in `../../docs/github.md`), so its Sources imported list can
   link the issues each source became. Close it with a comment that lists what was imported.
 - On a rerun, update the baseline's sections and its Sources imported list, and comment what
@@ -105,10 +112,11 @@ every file stays as it is.
 ## 8. Report
 
 - the baseline, with its link
-- what was filed, counted by kind, with links
+- what was filed, counted by kind, with links, and the existing issues closed or matched
 - each conflict and how it was resolved
 - the old-files PR, or "files unchanged"
 - what remains unverified: every claim labelled documented
 
-Then the next step: **triage** if plain issues were filed, then **build** on the oldest ready
-slice, or `/astack:mode <goal>`.
+Then the next step: **triage** while any open issue has no `astack:` label (plain issues
+adopt filed, or ones that were already there), then **build** on the oldest ready slice, or
+`/astack:mode <goal>`.
