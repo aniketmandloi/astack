@@ -29,7 +29,8 @@ round.
 Never ask the user for a fact you can look up. When a frontier question needs one (what the
 code does now, what an API supports, what a library costs), send it to the **scout** agent
 (`../../docs/routing.md`). Don't wait on it: only the questions downstream of a running scout
-wait, so ask the rest of the frontier now.
+wait, so ask the rest of the frontier now. In an adopted repo, the scout starts from the
+closed `Baseline:` spec, which records the decisions the existing code already made.
 
 A "which approach" question whose answer you could observe by running something (behaviour,
 speed, output, layout, whether a library handles the case) isn't the user's to answer either.
