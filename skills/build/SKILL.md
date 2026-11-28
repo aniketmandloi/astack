@@ -74,8 +74,9 @@ learns from it.
 
 ## 6. Review, before any PR
 
-Run the **review** skill in branch mode, automatically. Nothing is pushed and no PR exists
-yet, so fix rounds cost no CI minutes. On changes needed, send the findings to the tier that
+Run the **review** skill in branch mode, automatically. It first asks whether to review here
+or in another CLI, once per issue. Nothing is pushed and no PR exists yet, so fix rounds cost
+no CI minutes. On changes needed, send the findings to the tier that
 wrote the code, verify the fixes, and run review again; the second pass is a delta review of
 just the new commits. Repeat until the verdict is ready. After two rounds that aren't ready,
 show the user what remains and stop.
