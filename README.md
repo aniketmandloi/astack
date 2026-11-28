@@ -111,7 +111,7 @@ there: its own checks, its merge method, and its deploy workflow
 /astack:adopt
 ```
 
-For a project with plenty of code but nothing on GitHub yet, built with BMAD, Spec Kit,
+For a project with plenty of code but no AStack issues yet, built with BMAD, Spec Kit,
 pstack, gstack, or no workflow at all. Adopt reads the code, the git history, and any
 planning files the old workflow left, and checks every planned item against the code. After
 one preview, it files:
@@ -122,6 +122,10 @@ one preview, it files:
 - unfinished work as specs and slices when its decisions are settled, or as plain issues for
   `triage` when they aren't. Finished work stays a line in the baseline
 - a cleanup slice for slop already in the code, so turning on CI later doesn't block
+
+Issues the repo already has stay where they are. Adopt checks each against the code, closes
+the ones already done once I agree, and leaves the rest for `triage` to label in place. It
+never files a duplicate of an existing issue.
 
 It deletes nothing. It offers one PR that moves the old rules into `AGENTS.md` and replaces
 each imported planning file with a link to its issue, and I can say no. Rerunning it imports
